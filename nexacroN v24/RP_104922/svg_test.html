@@ -1,0 +1,42 @@
+    <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>D3 SVG Chart</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body { margin:0; padding:0; }
+    </style>
+</head>
+<body>
+    <svg id="chart" width="600" height="400"></svg>
+
+    <script>
+        const data = [10, 30, 20, 50, 40];
+        const width = 600;
+        const height = 400;
+        const padding = 40;
+
+        const svg = d3.select("#chart");
+
+        const xScale = d3.scaleBand()
+            .domain(d3.range(data.length))
+            .range([padding, width - padding])
+            .padding(0.2);
+
+        const yScale = d3.scaleLinear()
+            .domain([0, d3.max(data)])
+            .range([height - padding, padding]);
+
+        svg.selectAll("rect")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("x", (d, i) => xScale(i))
+            .attr("y", d => yScale(d))
+            .attr("width", xScale.bandwidth())
+            .attr("height", d => (height - padding) - yScale(d))
+            .attr("fill", "steelblue");
+    </script>
+</body>
+</html>

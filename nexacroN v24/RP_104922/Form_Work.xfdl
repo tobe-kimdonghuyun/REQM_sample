@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Work" width="1280" height="720" titletext="Form_Work">
+    <Layouts>
+      <Layout width="1280" height="720" screenid="Desktop_screen">
+        <Div id="Div00" taborder="0" text="Div00" left="38" top="126" width="844" height="468"/>
+        <Button id="Button00" taborder="1" text="방안1" left="89" top="23" width="120" height="50" onclick="Button00_onclick"/>
+        <Button id="Button01" taborder="2" text="방안2" left="229" top="24" width="125" height="53" onclick="Button01_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.Button00_onclick = function(obj,e)
+{
+	
+	this.chart2();
+
+};
+this.fnGetDivContainerDom = function(divObj)
+{
+	// Div 컴포넌트의 inner form container id 규칙: _unique_id + ".form:container"
+	var containerId = divObj._unique_id + ".form:container";
+	var dom = document.getElementById(containerId);
+	trace("containerId: " + containerId + " / dom: " + (dom ? "찾음" : "null"));
+	return dom;
+};
+this.chart2 = function()
+{
+	var dom = this.fnGetDivContainerDom(this.Div00);
+	if (!dom) return;
+
+	// data=[10,30,20,50,40], width=600, height=400, padding=40
+	// xScale: step=104, bandwidth=83, x(i)=50+i*104
+	// yScale: y=360-6.4*v, height=6.4*v
+	var html = ''
+		//+ '<div id="svgHost" style="position:absolute;left:0;top:0;width:100%;height:100%;">'
+		+ '<svg id="chart" width="100%" height="100%" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid meet">'                                                                                                                                   
+		+ '<rect x="60"  y="296" width="80" height="64"  fill="steelblue"></rect>'
+		+ '<rect x="160" y="168" width="80" height="192" fill="steelblue"></rect>'
+		+ '<rect x="260" y="232" width="80" height="128" fill="steelblue"></rect>'
+		+ '<rect x="360" y="40"  width="80" height="320" fill="steelblue"></rect>'
+		+ '<rect x="460" y="104" width="80" height="256" fill="steelblue"></rect>'
+		+ '</svg>';
+		//+ '</div>';
+
+	dom.innerHTML = html;
+}
+this.chart1 = function()
+{
+	var dom = this.fnGetDivContainerDom(this.Div00);
+
+	if (!dom) {
+		trace("dom을 찾지 못했습니다");
+		return;
+	}
+
+	// 기존 내용 초기화
+	/*
+	dom.innerHTML = "";
+
+	// SVG 요소 생성 (svg_test.html의 SVG)
+	var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+	svg.id = "chart";
+	svg.setAttribute("width", "100%");                                                                                                                                                                                                                   
+	svg.setAttribute("height", "100%");                                                                                                                                                                                                                  
+    svg.setAttribute("viewBox", "0 0 600 400");
+	svg.setAttribute("preserveAspectRatio", "xMidYMid meet");  
+	dom.appendChild(svg);
+*/
+	dom.innerHTML = '<svg id="chart" width="100%" height="100%" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid meet"></svg>';
+	// D3 차트 렌더링 함수 (svg_test.html의 script 내용)
+	function drawChart() {
+		var data = [10, 30, 20, 50, 40];
+		var width = 600;
+		var height = 400;
+		var padding = 40;
+
+		var svgEl = d3.select("#chart");
+
+		var xScale = d3.scaleBand()
+			.domain(d3.range(data.length))
+			.range([padding, width - padding])
+			.padding(0.2);
+
+		var yScale = d3.scaleLinear()
+			.domain([0, d3.max(data)])
+			.range([height - padding, padding]);
+
+		svgEl.selectAll("rect")
+			.data(data)
+			.enter()
+			.append("rect")
+			.attr("x", function(d, i) { return xScale(i); })
+			.attr("y", function(d) { return yScale(d); })
+			.attr("width", xScale.bandwidth())
+			.attr("height", function(d) { return (height - padding) - yScale(d); })
+			.attr("fill", "red");
+	}
+
+	// D3가 이미 로드된 경우 바로 실행, 아니면 동적 로드
+	if (window.d3) {
+		drawChart();
+	} else {
+		var script = document.createElement("script");
+		script.src = "https://d3js.org/d3.v7.min.js";
+		script.onload = function() { drawChart(); };
+		document.head.appendChild(script);
+	}
+}
+this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.chart1();
+};
+]]></Script>
+  </Form>
+</FDL>
