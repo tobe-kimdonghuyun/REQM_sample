@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <GenInfo version="1.1">
+    <Rule>
+      <ENV rule_version="1.05"/>
+      <ADL rule_version="1.14"/>
+      <FDL rule_version="1.04"/>
+      <XCSS rule_version="1.04"/>
+      <Script rule_version="1.02"/>
+      <GeneratorInfo rule_version="1.3"/>
+    </Rule>
+    <Info project="F:\Tops_Sample\RP_105110_MDI_Frameset_ORI\" generated="C:\Users\sjrnfl13\Documents\project\apache-tomcat-9.0.89\webapps\nexacroN_v24\24.0.0.1001\MDI_Frameset_ORI\">
+      <File url="typedefinition.xml" checksum="20230216110036" errormsg=""/>
+      <File url="appvariables.xml" checksum="20260413135806" errormsg=""/>
+      <File url="environment.xml" checksum="20230202103648" errormsg=""/>
+      <File url="_resource_\_theme_\blue\theme.xcss" checksum="20210909132050" errormsg=""/>
+      <File url="App_Desktop.xadl" checksum="20260415180924" errormsg=""/>
+      <File url="_resource_\_xcss_\temp_main.xcss" checksum="20210909132050" errormsg=""/>
+      <File url="Base\frameTop.xfdl" checksum="20260415182934" errormsg=""/>
+      <File url="frame\frmLeft.xfdl" checksum="20210909132050" errormsg=""/>
+      <File url="frame\frmMdi.xfdl" checksum="20210909132050" errormsg=""/>
+      <File url="frame\frmBottom.xfdl" checksum="20210909132050" errormsg=""/>
+      <File url="Base\test_pop.xfdl" checksum="20230202104826" errormsg=""/>
+      <File url="Base\work01.xfdl" checksum="20260116175848" errormsg=""/>
+      <File url="Base\work02.xfdl" checksum="20210909132050" errormsg=""/>
+      <File url="Base\work03.xfdl" checksum="20210909132050" errormsg=""/>
+      <File url="Base\work04.xfdl" checksum="20230110110624" errormsg=""/>
+      <File url="Base\work05.xfdl" checksum="20230202112528" errormsg=""/>
+      <File url="Base\work06.xfdl" checksum="20230202113908" errormsg=""/>
+      <File url="frame\frmTop.xfdl" checksum="20250924163646" errormsg=""/>
+      <File url="frame\frmWork.xfdl" checksum="20260116171020" errormsg=""/>
+      <File url="Base\tes13123.xfdl" checksum="20260415143746" errormsg=""/>
+      <File url="Base\Form_Work.xfdl" checksum="20260415152152" errormsg=""/>
+      <File url="E:\git\extension2\WORK800\Lib\FrameworkJS\framework\Framework.json" checksum="20260410131133" errormsg=""/>
+      <File url="E:\git\extension2\WORK800\Lib\FrameworkJS\resources\Resource.json" checksum="20260410131135" errormsg=""/>
+      <File url="E:\git\extension2\WORK800\Lib\FrameworkJS\component\CompBase.json" checksum="20260410131119" errormsg=""/>
+      <File url="E:\git\extension2\WORK800\Lib\FrameworkJS\component\ComComp.json" checksum="20260410131108" errormsg=""/>
+      <File url="E:\git\extension2\WORK800\Lib\FrameworkJS\component\Grid.json" checksum="20260410131128" errormsg=""/>
+      <File url="E:\git\extension2\WORK800\Lib\FrameworkJS\component\DeviceAPI.json" checksum="20260410131123" errormsg=""/>
+      <File url="E:\git\extension2\WORK800\Lib\FrameworkJS\component\ListView.json" checksum="20260410131129" errormsg=""/>
+      <File url="Base\Form_Work_copy0.xfdl" checksum="20260415160058" errormsg=""/>
+    </Info>
+  </GenInfo>
+</root>

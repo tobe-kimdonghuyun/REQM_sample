@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="work04" width="1090" height="650" titletext="New Form">
+    <Layouts>
+      <Layout height="650" mobileorientation="landscape" width="1090">
+        <Button id="Button01" taborder="0" text="open1" left="34" top="284" width="87" height="42" onclick="Button01_onclick"/>
+        <Button id="Button01_00" taborder="1" text="open2" left="144" top="284" width="87" height="42" onclick="Button02_onclick"/>
+        <Button id="Button01_01" taborder="2" text="open3" left="254" top="284" width="87" height="42" onclick="Button03_onclick"/>
+        <Button id="Button01_01_00" taborder="3" text="open창 다 닫기" left="364" top="284" width="137" height="42" onclick="Button04_onclick"/>
+        <Button id="Button00" taborder="4" text="첫번째 오픈 자식창 함수 또는 객체 접근" left="58" top="365" width="552" height="41" onclick="Button00_onclick"/>
+        <Button id="btn_pop" taborder="5" text="popup" left="88" top="91" width="120" height="59" onclick="btn_pop_onclick"/>
+        <Button id="btn_open" taborder="6" text="open" left="264" top="88" width="154" height="60" onclick="btn_open_onclick"/>
+        <Button id="Button20" taborder="7" text="Button02" left="678" top="289" width="126" height="64" onclick="Button20_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+          <Column id="Column4" type="STRING" size="256"/>
+          <Column id="Column5" type="STRING" size="256"/>
+          <Column id="Column6" type="STRING" size="256"/>
+          <Column id="Column7" type="STRING" size="256"/>
+          <Column id="Column8" type="STRING" size="256"/>
+          <Column id="Column9" type="STRING" size="256"/>
+          <Column id="Column10" type="STRING" size="256"/>
+          <Column id="Column11" type="STRING" size="256"/>
+          <Column id="Column12" type="STRING" size="256"/>
+          <Column id="Column13" type="STRING" size="256"/>
+          <Column id="Column14" type="STRING" size="256"/>
+          <Column id="Column15" type="STRING" size="256"/>
+          <Column id="Column16" type="STRING" size="256"/>
+          <Column id="Column17" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var arrPopFrame = nexacro.getPopupFrames();
+	if(arrPopFrame.length > 0 ) {
+		for (var i=0; i<arrPopFrame.length; i++) {			
+			trace(arrPopFrame[i].id);
+			if (arrPopFrame[i].id == "modeless01") {
+				arrPopFrame[i].form.setFocus();
+				return;
+			}
+		}
+		
+	}
+	
+	nexacro.open("modeless01", "Base::test_pop.xfdl", this.getOwnerFrame(),{}, "showtitlebar=true resizable=true", 0, 0, 690, 450, this);		
+};
+
+this.Button02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var arrPopFrame = nexacro.getPopupFrames();
+	if(arrPopFrame.length > 0 ) {
+		for (var i=0; i<arrPopFrame.length; i++) {			
+			trace(arrPopFrame[i].id);
+			if (arrPopFrame[i].id == "modeless02") {
+				arrPopFrame[i].form.setFocus();
+				return;
+			}
+		}
+		
+	}
+	
+	nexacro.open("modeless02", "Base::test_pop.xfdl", this.getOwnerFrame(),{}, "showtitlebar=true resizable=true", 0, 0, 690, 450, this);		
+};
+
+this.Button03_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var arrPopFrame = nexacro.getPopupFrames();
+	if(arrPopFrame.length > 0 ) {
+		for (var i=0; i<arrPopFrame.length; i++) {			
+			trace(arrPopFrame[i].id);
+			if (arrPopFrame[i].id == "modeless03") {
+				arrPopFrame[i].form.setFocus();
+				return;
+			}
+		}
+		
+	}
+	
+	//nexacro.open("modeless03", "Base::test_pop.xfdl", this.getOwnerFrame(),{}, "showtitlebar=true resizable=true", 0, 0, 690, 450, this);		
+};
+
+this.Button04_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var arrPopFrame = nexacro.getPopupFrames();
+	var arrLen = arrPopFrame.length;
+	if(arrLen > 0 ) {
+		for (var i=0; i<arrLen; i++) {			
+				trace(arrPopFrame[0].id);
+				// 삭제시 배열도 전부 동적으로 바뀌기에 3개 띄워놓으면 3번 삭제 
+				arrPopFrame[0].form.close();							
+		}		
+	}
+};
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var arrPopFrame = nexacro.getPopupFrames();
+	if(arrPopFrame.length > 0 ) {
+		for (var i=0; i<arrPopFrame.length; i++) {			
+			trace(arrPopFrame[i].id);
+			if (arrPopFrame[i].id == "modeless01") {
+				arrPopFrame[i].form.Button00.click();
+				return;
+			}
+		}
+		
+	}
+};
+
+this.btn_pop_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//showmodal		
+	//this.lfn_Dialog("frmpop01", "Base::np_Form_Showmodal_Popup.xfdl", "123", 0, 0, 400, 551, true, "f_pop_callback");		
+	this.lfn_Dialog("frmpop01", "Base::test_pop.xfdl", "123", 0, 0, 400, 551, true, "f_pop_callback");		
+};
+
+this.lfn_Dialog = function (sFormId, sUrl, sArg, nLeft, nTop, nWidth, nHeight, bModeless, sCallbackFunc)
+{
+	
+	var newChild = null;
+	var objParentFrame = this.getOwnerFrame();
+
+	newChild = new ChildFrame();
+	newChild.init(sFormId, 0, 0, nWidth, nHeight, null, null, sUrl);
+	newChild.set_openalign("center middle");	
+	newChild.set_resizable(true);	
+	newChild.set_topmost(true);	
+	newChild.showModal(sFormId,objParentFrame, {pv_arg:sArg}, this, sCallbackFunc);
+	
+	// showModal 호출 이후 로직 처리시 어싱크로 처리 된다.
+	// 즉, showModal 팝업 띄우면서 아래의 trace 스크립트 구문 로직 실행 	
+	trace("모달 팝업 호출하면서 스클립트 실행");
+	// 모달 팝업 닫힌 후 싱크방식으로 처리 하기 위해서는 callbackfunc 에서 스크립트작성
+};
+this.f_pop_callback=function(v1,v2)
+{
+	this.Edit00.set_value(v1 + " / " + v2);
+	
+	if (v2 == "aa") {
+		trace("aa");
+		// 모달 팝업 닫힌 후 값에 따라 로직 작성
+	} else if (v2 == "bb") {
+		trace("bb");	
+		// 모달 팝업 닫힌 후 값에 따라 로직 작성
+	}	
+	
+};
+
+
+
+this.btn_open_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var arrPopFrame = nexacro.getPopupFrames();
+	if(arrPopFrame.length > 0 ) {
+		for (var i=0; i<arrPopFrame.length; i++) {			
+			trace(arrPopFrame[i].id);
+			if (arrPopFrame[i].id == "modeless01") {
+				arrPopFrame[i].form.setFocus();
+				return;
+			}
+		}
+		
+	}
+	
+	nexacro.open("modeless01", "Base::test_pop.xfdl", this.getOwnerFrame(),{}, "showtitlebar=true resizable=true", 0, 0, 690, 450, this);		
+	//nexacro.open("modeless01", "Base::test_pop.xfdl", null,{}, "showtitlebar=true resizable=true", 0, 0, 690, 450, this);		
+	
+};
+
+this.Button20_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	trace("\n=========== Environment=================");
+	trace("\Environment.themeid : " + nexacro.getEnvironment().themeid);
+	trace("\Environment.datatyperule: " +  nexacro.getEnvironment().datatyperule);	
+	trace("\Environment.httptimeout: " +  nexacro.getEnvironment().httptimeout);	
+	trace("\Environment.loadingimage: " +  nexacro.getEnvironment().loadingimage);		
+
+};
+]]></Script>
+  </Form>
+</FDL>

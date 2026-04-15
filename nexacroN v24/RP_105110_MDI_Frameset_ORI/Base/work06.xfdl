@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="sample_listview_01" left="0" top="0" width="1024" height="768" titletext="New Form" accessibilityenable="true">
+    <Layouts>
+      <Layout height="768" width="1024">
+        <ListView id="ListView00" taborder="0" left="5" top="5" binddataset="Dataset00" width="300" height="320" oncellclick="ListView00_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Band id="body" width="100%" height="160">
+                <Cell id="Cell06" left="50" top="30" width="165" height="37" displaytype="buttoncontrol" edittype="button" text="버튼"/>
+              </Band>
+            </Format>
+          </Formats>
+        </ListView>
+        <Grid id="Grid00" taborder="1" left="320" top="5" width="390" height="205" binddataset="Dataset00" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="180"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="title"/>
+                <Cell col="1" text="price"/>
+                <Cell col="2" text="amount"/>
+                <Cell col="3" text="Total"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:title"/>
+                <Cell col="1" text="bind:price"/>
+                <Cell col="2" text="bind:amount"/>
+                <Cell col="3" expr="expr: price * amount" displaytype="currency" locale="en_US"/>
+              </Band>
+              <Band id="summary">
+                <Cell/>
+                <Cell col="1"/>
+                <Cell col="2"/>
+                <Cell col="3" displaytype="currency" expr="expr:dataset.getSum('price*amount')" locale="en_US"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="title" type="STRING" size="256"/>
+          <Column id="cover" type="STRING" size="256"/>
+          <Column id="price" type="FLOAT" size="256"/>
+          <Column id="amount" type="INT" size="256"/>
+          <Column id="visible_yn" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="title">The Freewheelin' Bob Dylan</Col>
+            <Col id="cover">imagerc::Bob_Dylan_-_The_Freewheelin'_Bob_Dylan.jpg</Col>
+            <Col id="price">7.98</Col>
+            <Col id="amount">0</Col>
+            <Col id="visible_yn">Y</Col>
+          </Row>
+          <Row>
+            <Col id="title">Highway 61 Revisited</Col>
+            <Col id="cover">imagerc::Bob_Dylan_-_Highway_61_Revisited.jpg</Col>
+            <Col id="price">7.29</Col>
+            <Col id="amount">0</Col>
+            <Col id="visible_yn">N</Col>
+          </Row>
+          <Row>
+            <Col id="title">Blood on the Tracks</Col>
+            <Col id="cover">imagerc::Bob_Dylan_-_Blood_on_the_Tracks.jpg</Col>
+            <Col id="price">9.98</Col>
+            <Col id="amount">0</Col>
+            <Col id="visible_yn">Y</Col>
+          </Row>
+          <Row>
+            <Col id="title">Blonde on Blonde</Col>
+            <Col id="cover">imagerc::Bob_Dylan_-_Blonde_on_Blonde.jpg</Col>
+            <Col id="price">9.98</Col>
+            <Col id="amount">0</Col>
+            <Col id="visible_yn">N</Col>
+          </Row>
+          <Row>
+            <Col id="title">Bringing It All Back Home</Col>
+            <Col id="cover">imagerc::Bob_Dylan_-_Bringing_It_All_Back_Home.jpg</Col>
+            <Col id="price">7.29</Col>
+            <Col id="amount">0</Col>
+            <Col id="visible_yn">Y</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[this.ListView00_oncellclick = function(obj:nexacro.ListView,e:nexacro.ListViewClickEventInfo)
+{
+		if(e.cellid == 'Cell06')
+		{
+			this.lfn_Dialog("frmpop01", "Base::test_pop.xfdl", "123", 0, 0, 400, 551, true, "f_pop_callback");		
+		}			
+		
+};
+
+this.lfn_Dialog = function (sFormId, sUrl, sArg, nLeft, nTop, nWidth, nHeight, bModeless, sCallbackFunc)
+{
+	
+	var newChild = null;
+	var objParentFrame = this.getOwnerFrame();
+
+	newChild = new ChildFrame();
+	newChild.init(sFormId, 0, 0, nWidth, nHeight, null, null, sUrl);
+	newChild.set_openalign("center middle");	
+	newChild.set_resizable(true);	
+	newChild.set_topmost(true);	
+	newChild.showModal(sFormId,objParentFrame, {pv_arg:sArg}, this, sCallbackFunc);
+	
+	// showModal 호출 이후 로직 처리시 어싱크로 처리 된다.
+	// 즉, showModal 팝업 띄우면서 아래의 trace 스크립트 구문 로직 실행 	
+	//trace("모달 팝업 호출하면서 스클립트 실행");
+	// 모달 팝업 닫힌 후 싱크방식으로 처리 하기 위해서는 callbackfunc 에서 스크립트작성
+};
+this.f_pop_callback=function(v1,v2)
+{
+	//this.Edit00.set_value(v1 + " / " + v2);
+	
+	if (v2 == "aa") {
+		trace("aa");
+		// 모달 팝업 닫힌 후 값에 따라 로직 작성
+	} else if (v2 == "bb") {
+		trace("bb");	
+		// 모달 팝업 닫힌 후 값에 따라 로직 작성
+	}	
+	
+};]]></Script>
+  </Form>
+</FDL>
