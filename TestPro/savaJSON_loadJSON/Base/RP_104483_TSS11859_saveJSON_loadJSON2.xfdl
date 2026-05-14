@@ -1,0 +1,568 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="TSS11859_saveJSON_loadJSON" width="1600" height="900" titletext="New Form">
+    <Layouts>
+      <Layout height="900" width="1600">
+        <Static id="Static00" taborder="0" text="Load JSON String : " left="11" top="15" width="129" height="25"/>
+        <TextArea id="taLoadJSONString" taborder="1" left="130" top="10" width="1340" height="150" value="{&quot;id&quot;:&quot;Dataset00&quot;,&quot;ColumnInfo&quot;:{&quot;Column&quot;:[{&quot;id&quot;:&quot;Column0&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column2&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column3&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column4&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column5&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column6&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column7&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column8&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column9&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column10&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column11&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column12&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column13&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column14&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column15&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column16&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column17&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column18&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column19&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column20&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column21&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column22&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column23&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;},{&quot;id&quot;:&quot;Column24&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;}]},&quot;Rows&quot;:[{&quot;Column0&quot;:&quot;A\nB&quot;,&quot;Column1&quot;:&quot;A\\nB&quot;,&quot;Column2&quot;:&quot;A\\\nB&quot;,&quot;Column3&quot;:&quot;A\\\\nB&quot;,&quot;Column4&quot;:&quot;A\\\\\nB&quot;,&quot;Column5&quot;:&quot;A\tB&quot;,&quot;Column6&quot;:&quot;A\\tB&quot;,&quot;Column7&quot;:&quot;A\\\tB&quot;,&quot;Column8&quot;:&quot;A\\\\tB&quot;,&quot;Column9&quot;:&quot;A\\\\\tB&quot;,&quot;Column10&quot;:&quot;A\&quot;B&quot;,&quot;Column11&quot;:&quot;A\\\&quot;B&quot;,&quot;Column12&quot;:&quot;A\rB&quot;,&quot;Column13&quot;:&quot;A\\rB&quot;,&quot;Column14&quot;:&quot;A\\\rB&quot;,&quot;Column15&quot;:&quot;A\bB&quot;,&quot;Column16&quot;:&quot;A\\bB&quot;,&quot;Column17&quot;:&quot;A\fB&quot;,&quot;Column18&quot;:&quot;A\\fB&quot;,&quot;Column19&quot;:&quot;A\u0007B&quot;,&quot;Column20&quot;:&quot;A\\u0007B&quot;,&quot;Column21&quot;:&quot;A\nB&quot;,&quot;Column22&quot;:&quot;A\\u000AB&quot;,&quot;Column23&quot;:&quot;A\/B&quot;,&quot;Column24&quot;:&quot;A\\/B&quot;}]}" wordWrap="english"/>
+        <Grid id="Grid00" taborder="2" left="30" top="221" width="1420" height="99" binddataset="Dataset00" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="48"/>
+                <Column size="61"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="47"/>
+                <Column size="58"/>
+                <Column size="40"/>
+                <Column size="45"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="45"/>
+                <Column size="40"/>
+                <Column size="45"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="65"/>
+                <Column size="70"/>
+                <Column size="65"/>
+                <Column size="70"/>
+                <Column size="40"/>
+                <Column size="40"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="52"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="\n(LF)"/>
+                <Cell col="1" text="\\n"/>
+                <Cell col="2" text="\\\n"/>
+                <Cell col="3" text="\\\\n"/>
+                <Cell col="4" text="\\\\\n"/>
+                <Cell col="5" text="\t(TAB)"/>
+                <Cell col="6" text="\\t"/>
+                <Cell col="7" text="\\\t"/>
+                <Cell col="8" text="\\\\t"/>
+                <Cell col="9" text="\\\\\t"/>
+                <Cell col="10" text="\&quot;"/>
+                <Cell col="11" text="\\\&quot;"/>
+                <Cell col="12" text="\r(CR)"/>
+                <Cell col="13" text="\\r"/>
+                <Cell col="14" text="\\\r"/>
+                <Cell col="15" text="\b"/>
+                <Cell col="16" text="\\b"/>
+                <Cell col="17" text="\f"/>
+                <Cell col="18" text="\\f"/>
+                <Cell col="19" text="\u0007"/>
+                <Cell col="20" text="\\u0007"/>
+                <Cell col="21" text="\u000A"/>
+                <Cell col="22" text="\\u000A"/>
+                <Cell col="23" text="\/"/>
+                <Cell col="24" text="\\/"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="1" text="bind:Column1" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="2" text="bind:Column2" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="3" text="bind:Column3" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="4" text="bind:Column4" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="5" text="bind:Column5" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="6" text="bind:Column6" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="7" text="bind:Column7" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="8" text="bind:Column8" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="9" text="bind:Column9" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="10" text="bind:Column10" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="11" text="bind:Column11" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="12" text="bind:Column12" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="13" text="bind:Column13" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="14" text="bind:Column14" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="15" text="bind:Column15" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="16" text="bind:Column16" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="17" text="bind:Column17" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="18" text="bind:Column18" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="19" text="bind:Column19" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="20" text="bind:Column20" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="21" text="bind:Column21" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="22" text="bind:Column22" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="23" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;" text="bind:Column23"/>
+                <Cell col="24" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;" text="bind:Column24"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="Grid00_00" taborder="3" left="30" top="490" width="1420" height="100" binddataset="Dataset01" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="48"/>
+                <Column size="61"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="47"/>
+                <Column size="58"/>
+                <Column size="40"/>
+                <Column size="45"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="45"/>
+                <Column size="40"/>
+                <Column size="45"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="65"/>
+                <Column size="70"/>
+                <Column size="65"/>
+                <Column size="70"/>
+                <Column size="40"/>
+                <Column size="40"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="52"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="\n(LF)"/>
+                <Cell col="1" text="\\n"/>
+                <Cell col="2" text="\\\n"/>
+                <Cell col="3" text="\\\\n"/>
+                <Cell col="4" text="\\\\\n"/>
+                <Cell col="5" text="\t(TAB)"/>
+                <Cell col="6" text="\\t"/>
+                <Cell col="7" text="\\\t"/>
+                <Cell col="8" text="\\\\t"/>
+                <Cell col="9" text="\\\\\t"/>
+                <Cell col="10" text="\&quot;"/>
+                <Cell col="11" text="\\\&quot;"/>
+                <Cell col="12" text="\r(CR)"/>
+                <Cell col="13" text="\\r"/>
+                <Cell col="14" text="\\\r"/>
+                <Cell col="15" text="\b"/>
+                <Cell col="16" text="\\b"/>
+                <Cell col="17" text="\f"/>
+                <Cell col="18" text="\\f"/>
+                <Cell col="19" text="\u0007"/>
+                <Cell col="20" text="\\u0007"/>
+                <Cell col="21" text="\u000A"/>
+                <Cell col="22" text="\\u000A"/>
+                <Cell col="23" text="\/"/>
+                <Cell col="24" text="\\/"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="1" text="bind:Column1" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="2" text="bind:Column2" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="3" text="bind:Column3" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="4" text="bind:Column4" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="5" text="bind:Column5" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="6" text="bind:Column6" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="7" text="bind:Column7" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="8" text="bind:Column8" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="9" text="bind:Column9" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="10" text="bind:Column10" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="11" text="bind:Column11" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="12" text="bind:Column12" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="13" text="bind:Column13" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="14" text="bind:Column14" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="15" text="bind:Column15" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="16" text="bind:Column16" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="17" text="bind:Column17" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="18" text="bind:Column18" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="19" text="bind:Column19" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="20" text="bind:Column20" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="21" text="bind:Column21" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="22" text="bind:Column22" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="23" text="bind:Column23" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+                <Cell col="24" text="bind:Column24" font="9px/normal &quot;Meiryo&quot;,&quot;Verdana&quot;,&quot;Roboto&quot;,&quot;Droid Sans&quot;,&quot;游ゴシック&quot;,&quot;YuGothic&quot;,&quot;ヒラギノ角ゴ ProN W3&quot;,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;ＭＳ Ｐゴシック&quot;,&quot;MS Gothic&quot;,&quot;sans-serif&quot;"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btnLoadJSON01" taborder="4" text="Dataset.loadJSON()" left="30" top="170" width="250" height="50" onclick="btnLoadJSON_onclick" background="orange"/>
+        <Button id="btnJSONParseToLoadJSON" taborder="5" text="JSON.parse -&gt; Dataobject.set_data()" left="30" top="440" width="250" height="50" onclick="btnJSONParseToLoadJSON_onclick" background="darkseagreen"/>
+        <Button id="btnSaveJSON01" taborder="6" text="Dataset.saveJSON()" left="30" top="370" width="250" height="50" onclick="btnSaveJSON01_onclick" background="orange"/>
+        <Static id="Static00_00" taborder="7" text="Save JSON String : " left="11" top="658" width="129" height="25"/>
+        <TextArea id="taSaveJSONString" taborder="8" left="130" top="653" width="1340" height="150" wordWrap="english"/>
+        <Button id="btnJSONStringify" taborder="9" text="Dataobject.data -&gt; JSON.stringify" left="30" top="590" width="250" height="50" onclick="btnJSONStringify_onclick" background="darkseagreen"/>
+        <Button id="btnCopySaveJSONStringToLoadJSONString" taborder="10" text="&lt;&lt;&lt;---&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;Copy &#13;&#10;[Save &#13;&#10;JSON &#13;&#10;String]&#13;&#10; -&gt; &#13;&#10;[Load &#13;&#10;JSON &#13;&#10;String]&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;---&gt;&gt;&gt;" left="1470" top="10" width="110" height="793" onclick="btnCopySaveJSONStringToLoadJSONString_onclick"/>
+        <Button id="btnClearGridData" taborder="11" text="Clear Grid Data" left="1235" top="371" width="215" height="120" onclick="btnClearGridData_onclick"/>
+        <Grid id="Grid01" taborder="12" left="30" top="320" width="1420" height="52" binddataset="Dataset02" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="48"/>
+                <Column size="61"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="47"/>
+                <Column size="58"/>
+                <Column size="40"/>
+                <Column size="45"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="45"/>
+                <Column size="40"/>
+                <Column size="45"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="65"/>
+                <Column size="70"/>
+                <Column size="65"/>
+                <Column size="70"/>
+                <Column size="40"/>
+                <Column size="40"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="25"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="\n(LF)"/>
+                <Cell col="1" text="\\n"/>
+                <Cell col="2" text="\\\n"/>
+                <Cell col="3" text="\\\\n"/>
+                <Cell col="4" text="\\\\\n"/>
+                <Cell col="5" text="\t(TAB)"/>
+                <Cell col="6" text="\\t"/>
+                <Cell col="7" text="\\\t"/>
+                <Cell col="8" text="\\\\t"/>
+                <Cell col="9" text="\\\\\t"/>
+                <Cell col="10" text="\&quot;"/>
+                <Cell col="11" text="\\\&quot;"/>
+                <Cell col="12" text="\r(CR)"/>
+                <Cell col="13" text="\\r"/>
+                <Cell col="14" text="\\\r"/>
+                <Cell col="15" text="\b"/>
+                <Cell col="16" text="\\b"/>
+                <Cell col="17" text="\f"/>
+                <Cell col="18" text="\\f"/>
+                <Cell col="19" text="\u0007"/>
+                <Cell col="20" text="\\u0007"/>
+                <Cell col="21" text="\u000A"/>
+                <Cell col="22" text="\\u000A"/>
+                <Cell col="23" text="\/"/>
+                <Cell col="24" text="\\/"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0"/>
+                <Cell col="1" text="bind:Column1"/>
+                <Cell col="2" text="bind:Column2"/>
+                <Cell col="3" text="bind:Column3"/>
+                <Cell col="4" text="bind:Column4"/>
+                <Cell col="5" text="bind:Column5"/>
+                <Cell col="6" text="bind:Column6"/>
+                <Cell col="7" text="bind:Column7"/>
+                <Cell col="8" text="bind:Column8"/>
+                <Cell col="9" text="bind:Column9"/>
+                <Cell col="10" text="bind:Column10"/>
+                <Cell col="11" text="bind:Column11"/>
+                <Cell col="12" text="bind:Column12"/>
+                <Cell col="13" text="bind:Column13"/>
+                <Cell col="14" text="bind:Column14"/>
+                <Cell col="15" text="bind:Column15"/>
+                <Cell col="16" text="bind:Column16"/>
+                <Cell col="17" text="bind:Column17"/>
+                <Cell col="18" text="bind:Column18"/>
+                <Cell col="19" text="bind:Column19"/>
+                <Cell col="20" text="bind:Column20"/>
+                <Cell col="21" text="bind:Column21"/>
+                <Cell col="22" text="bind:Column22"/>
+                <Cell col="23" text="bind:Column23"/>
+                <Cell col="24" text="bind:Column24"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btnComparginGrid" taborder="13" text="Comparing loadJSON and JSON.parse Grid" left="410" top="372" width="280" height="118" onclick="btnComparginGrid_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+          <Column id="Column4" type="STRING" size="256"/>
+          <Column id="Column5" type="STRING" size="256"/>
+          <Column id="Column6" type="STRING" size="256"/>
+          <Column id="Column7" type="STRING" size="256"/>
+          <Column id="Column8" type="STRING" size="256"/>
+          <Column id="Column9" type="STRING" size="256"/>
+          <Column id="Column10" type="STRING" size="256"/>
+          <Column id="Column11" type="STRING" size="256"/>
+          <Column id="Column12" type="STRING" size="256"/>
+          <Column id="Column13" type="STRING" size="256"/>
+          <Column id="Column14" type="STRING" size="256"/>
+          <Column id="Column15" type="STRING" size="256"/>
+          <Column id="Column16" type="STRING" size="256"/>
+          <Column id="Column17" type="STRING" size="256"/>
+          <Column id="Column18" type="STRING" size="256"/>
+          <Column id="Column19" type="STRING" size="256"/>
+          <Column id="Column20" type="STRING" size="256"/>
+          <Column id="Column21" type="STRING" size="256"/>
+          <Column id="Column22" type="STRING" size="256"/>
+          <Column id="Column23" type="STRING" size="256"/>
+          <Column id="Column24" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0">DA
+B</Col>
+            <Col id="Column1">DA\nB</Col>
+            <Col id="Column2">DA\\nB</Col>
+            <Col id="Column3">DA\\\nB</Col>
+            <Col id="Column4">DA\\\\nB</Col>
+            <Col id="Column5">DA	B</Col>
+            <Col id="Column6">DA\tB</Col>
+            <Col id="Column7">DA\\tB</Col>
+            <Col id="Column8">DA\\\tB</Col>
+            <Col id="Column9">DA\\\\tB</Col>
+            <Col id="Column10">DA\"B</Col>
+            <Col id="Column11">DA\\"B</Col>
+            <Col id="Column12">DA&#13;B</Col>
+            <Col id="Column13">DA\rB</Col>
+            <Col id="Column14">DA\\rB</Col>
+            <Col id="Column15">DA\bB</Col>
+            <Col id="Column16">DA\\bB</Col>
+            <Col id="Column17">DA\fB</Col>
+            <Col id="Column18">DA\fB</Col>
+            <Col id="Column19">DA\u0007B</Col>
+            <Col id="Column20">DA\\u0007B</Col>
+            <Col id="Column21">DA\u000AB</Col>
+            <Col id="Column22">DA\\u000AB</Col>
+            <Col id="Column23">DA\/B</Col>
+            <Col id="Column24">DA\\/B</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="Dataset01" binddataobject="DataObject00" dataobjectpath="$.Rows[*]">
+        <ColumnInfo>
+          <Column id="Column0" datapath="@.Column0" type="STRING" size="256"/>
+          <Column id="Column1" datapath="@.Column1" type="STRING" size="256"/>
+          <Column id="Column2" datapath="@.Column2" type="STRING" size="256"/>
+          <Column id="Column3" datapath="@.Column3" type="STRING" size="256"/>
+          <Column id="Column4" datapath="@.Column4" type="STRING" size="256"/>
+          <Column id="Column5" datapath="@.Column5" type="STRING" size="256"/>
+          <Column id="Column6" datapath="@.Column6" type="STRING" size="256"/>
+          <Column id="Column7" datapath="@.Column7" type="STRING" size="256"/>
+          <Column id="Column8" datapath="@.Column8" type="STRING" size="256"/>
+          <Column id="Column9" datapath="@.Column9" type="STRING" size="256"/>
+          <Column id="Column10" datapath="@.Column10" type="STRING" size="256"/>
+          <Column id="Column11" datapath="@.Column11" type="STRING" size="256"/>
+          <Column id="Column12" datapath="@.Column12" type="STRING" size="256"/>
+          <Column id="Column13" datapath="@.Column13" type="STRING" size="256"/>
+          <Column id="Column14" datapath="@.Column14" type="STRING" size="256"/>
+          <Column id="Column15" datapath="@.Column15" type="STRING" size="256"/>
+          <Column id="Column16" datapath="@.Column16" type="STRING" size="256"/>
+          <Column id="Column17" datapath="@.Column17" type="STRING" size="256"/>
+          <Column id="Column18" datapath="@.Column18" type="STRING" size="256"/>
+          <Column id="Column19" datapath="@.Column19" type="STRING" size="256"/>
+          <Column id="Column20" datapath="@.Column20" type="STRING" size="256"/>
+          <Column id="Column21" datapath="@.Column21" type="STRING" size="256"/>
+          <Column id="Column22" datapath="@.Column22" type="STRING" size="256"/>
+          <Column id="Column23" type="STRING" size="256" datapath="@.Column23"/>
+          <Column id="Column24" type="STRING" size="256" datapath="@.Column24"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0">JA
+B</Col>
+            <Col id="Column1">JA\nB</Col>
+            <Col id="Column2">JA\\nB</Col>
+            <Col id="Column3">JA\\\nB</Col>
+            <Col id="Column4">JA\\\\nB</Col>
+            <Col id="Column5">JA	B</Col>
+            <Col id="Column6">JA\tB</Col>
+            <Col id="Column7">JA\\tB</Col>
+            <Col id="Column8">JA\\\tB</Col>
+            <Col id="Column9">JA\\\\tB</Col>
+            <Col id="Column10">JA\"B</Col>
+            <Col id="Column11">JA\\"B</Col>
+            <Col id="Column12">JA&#13;B</Col>
+            <Col id="Column13">JA\rB</Col>
+            <Col id="Column14">JA\\rB</Col>
+            <Col id="Column15">JA\bB</Col>
+            <Col id="Column16">JA\\bB</Col>
+            <Col id="Column17">JA\fB</Col>
+            <Col id="Column18">JA\fB</Col>
+            <Col id="Column19">JA\u0007B</Col>
+            <Col id="Column20">JA\\u0007B</Col>
+            <Col id="Column21">JA\u000A</Col>
+            <Col id="Column22">JA\\u000A</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="Dataset02">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+          <Column id="Column4" type="STRING" size="256"/>
+          <Column id="Column5" type="STRING" size="256"/>
+          <Column id="Column6" type="STRING" size="256"/>
+          <Column id="Column7" type="STRING" size="256"/>
+          <Column id="Column8" type="STRING" size="256"/>
+          <Column id="Column9" type="STRING" size="256"/>
+          <Column id="Column10" type="STRING" size="256"/>
+          <Column id="Column11" type="STRING" size="256"/>
+          <Column id="Column12" type="STRING" size="256"/>
+          <Column id="Column13" type="STRING" size="256"/>
+          <Column id="Column14" type="STRING" size="256"/>
+          <Column id="Column15" type="STRING" size="256"/>
+          <Column id="Column16" type="STRING" size="256"/>
+          <Column id="Column17" type="STRING" size="256"/>
+          <Column id="Column18" type="STRING" size="256"/>
+          <Column id="Column19" type="STRING" size="256"/>
+          <Column id="Column20" type="STRING" size="256"/>
+          <Column id="Column21" type="STRING" size="256"/>
+          <Column id="Column22" type="STRING" size="256"/>
+          <Column id="Column23" type="STRING" size="256"/>
+          <Column id="Column24" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows/>
+      </Dataset>
+      <DataObject id="DataObject00">
+        <Contents><![CDATA[{
+	"id": "Dataset00",
+	"ColumnInfo" :
+	{
+		"Column":
+		[
+			{ "id":"Column0", "type":"STRING", "size":"256" },
+			{ "id":"Column2", "type":"STRING", "size":"256" },
+			{ "id":"Column3", "type":"STRING", "size":"256" },
+			{ "id":"Column4", "type":"STRING", "size":"256" },
+			{ "id":"Column5", "type":"STRING", "size":"256" },
+			{ "id":"Column6", "type":"STRING", "size":"256" },
+			{ "id":"Column7", "type":"STRING", "size":"256" },
+			{ "id":"Column8", "type":"STRING", "size":"256" },
+			{ "id":"Column9", "type":"STRING", "size":"256" },
+			{ "id":"Column10", "type":"STRING", "size":"256" },
+			{ "id":"Column11", "type":"STRING", "size":"256" },
+			{ "id":"Column12", "type":"STRING", "size":"256" },
+			{ "id":"Column13", "type":"STRING", "size":"256" },
+			{ "id":"Column14", "type":"STRING", "size":"256" },
+			{ "id":"Column15", "type":"STRING", "size":"256" },
+			{ "id":"Column16", "type":"STRING", "size":"256" },
+			{ "id":"Column17", "type":"STRING", "size":"256" },
+			{ "id":"Column18", "type":"STRING", "size":"256" },
+			{ "id":"Column19", "type":"STRING", "size":"256" },
+			{ "id":"Column20", "type":"STRING", "size":"256" },
+			{ "id":"Column21", "type":"STRING", "size":"256" },
+			{ "id":"Column22", "type":"STRING", "size":"256" }
+		]
+	},
+	"Rows":
+	[
+		{
+			"Column0":"DA\nB",
+			"Column1":"DA\\nB",
+			"Column2":"DA\\\nB",
+			"Column3":"DA\\\\nB",
+			"Column4":"DA\\\\\nB",
+			"Column5":"DA\tB",
+			"Column6":"DA\\tB",
+			"Column7":"DA\\\tB",
+			"Column8":"DA\\\\tB",
+			"Column9":"DA\\\\\tB",
+			"Column10":"DA\"B",
+			"Column11":"DA\\\"B",
+			"Column12":"DA\r;B",
+			"Column13":"DA\\rB",
+			"Column14":"DA\\rB",
+			"Column15":"DA\bB",
+			"Column16":"DA\\bB",
+			"Column17":"DA\fB",
+			"Column18":"DA\\fB",
+			"Column19":"DA\u0007B",
+			"Column20":"DA\\u0007B",
+			"Column21":"DA\u000AB",
+			"Column22":"DA\\u000AB"
+		}
+	]
+}
+]]></Contents>
+      </DataObject>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.btnLoadJSON_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sJSON = this.taLoadJSONString.value;
+	trace("JSON String = [[[" + sJSON + "]]]\n");
+	this.Dataset00.loadJSON(sJSON);
+};
+
+this.btnJSONParseToLoadJSON_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sJSON = this.taLoadJSONString.value;
+	trace("JSON String = [[[" + sJSON + "]]]\n");
+	var oJSON = JSON.parse(sJSON);
+	this.DataObject00.set_data(oJSON);
+};
+
+
+this.btnSaveJSON01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sJSON = this.Dataset00.saveJSON();
+	trace("JSON String = [[[" + sJSON + "]]]\n");
+	this.taSaveJSONString.set_value(sJSON);
+};
+
+this.btnJSONStringify_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var oJSON = this.DataObject00.data;
+	var sJSON = JSON.stringify(oJSON);
+	trace("JSON String = [[[" + sJSON + "]]]\n");
+	this.taSaveJSONString.set_value(sJSON);
+};
+
+this.btnCopySaveJSONStringToLoadJSONString_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.taLoadJSONString.set_value(this.taSaveJSONString.value);
+};
+
+this.btnClearGridData_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Dataset00.clearData();
+	this.Dataset01.clearData();
+	this.Dataset02.clearData();
+};
+
+this.btnComparginGrid_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Dataset02.clearData();
+	var nRow = this.Dataset02.addRow();
+	var sLoadJson, sJsonParse;
+	var iMaxCol = this.Dataset00.getColCount();
+	for(var i = 0; i <= iMaxCol; i++) {
+		var result = "";
+		var sColName = "Column" + i;
+		sLoadJson = this.Dataset00.getColumn(0, sColName);
+		sJsonParse = this.Dataset01.getColumn(0, sColName);
+		if(sLoadJson == sJsonParse) {
+			result = "OK";
+		} else {
+			result = "NG";
+		}
+		trace(sColName + " : [loadJSON:[[" + sLoadJson + "]]] == [JSON.parse:[[" + sJsonParse +"]]] = " + result);
+		this.Dataset02.setColumn(0, i, result);
+	}
+};
+]]></Script>
+  </Form>
+</FDL>

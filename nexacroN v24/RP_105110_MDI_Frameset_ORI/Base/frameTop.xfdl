@@ -21320,8 +21320,9 @@ this.fn_menuClick = function(oBtnTop, sMenuId, sMenuNm)
 	
 	var x = this.divTopBtn.getOffsetLeft() + oBtnTop.getOffsetLeft()
               - this.menTop.getOffsetLeft();
+  var y = 1;
       // y = 1: _popupBy에서 item_height(42) + 1 → 버튼 하단에 정확히 표시
-      this.menTop.trackPopup(nIdx, x, 1, false);
+      this.menTop.trackPopup(nIdx, x, y, false);
  
 };
 

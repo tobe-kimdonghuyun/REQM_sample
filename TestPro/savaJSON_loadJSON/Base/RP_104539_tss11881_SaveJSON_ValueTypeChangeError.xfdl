@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="LoadJSON_ValueTypeChangeError" width="1900" height="900" titletext="New Form">
+    <Layouts>
+      <Layout height="900" width="1900">
+        <TextArea id="taLoadJSON" taborder="0" left="13" top="12" width="1171" height="148" value="{&quot;id&quot;:&quot;Dataset00&quot;,&quot;ColumnInfo&quot;:{&quot;Column&quot;:[{&quot;id&quot;:&quot;RowDataDiscription&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;, &quot;datapath&quot;:&quot;@.RowDataDiscription&quot;}&#10;,{&quot;id&quot;:&quot;STRING&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;, &quot;datapath&quot;:&quot;@.STRING&quot;}&#10;,{&quot;id&quot;:&quot;INT&quot;,&quot;type&quot;:&quot;INT&quot;,&quot;size&quot;:&quot;256&quot;, &quot;datapath&quot;:&quot;@.INT&quot;}&#10;,{&quot;id&quot;:&quot;FLOAT&quot;,&quot;type&quot;:&quot;FLOAT&quot;,&quot;size&quot;:&quot;256&quot;, &quot;datapath&quot;:&quot;@.FLOAT&quot;}&#10;,{&quot;id&quot;:&quot;BIGDECIMAL&quot;,&quot;type&quot;:&quot;BIGDECIMAL&quot;,&quot;size&quot;:&quot;256&quot;, &quot;datapath&quot;:&quot;@.BIGDECIMAL&quot;}&#10;,{&quot;id&quot;:&quot;DATE&quot;,&quot;type&quot;:&quot;DATE&quot;,&quot;size&quot;:&quot;256&quot;, &quot;datapath&quot;:&quot;@.DATE&quot;}&#10;,{&quot;id&quot;:&quot;TIME&quot;,&quot;type&quot;:&quot;TIME&quot;,&quot;size&quot;:&quot;256&quot;, &quot;datapath&quot;:&quot;@.TIME&quot;}&#10;,{&quot;id&quot;:&quot;DATETIME&quot;,&quot;type&quot;:&quot;DATETIME&quot;,&quot;size&quot;:&quot;256&quot;, &quot;datapath&quot;:&quot;@.DATETIME&quot;}&#10;,{&quot;id&quot;:&quot;LITERAL&quot;,&quot;type&quot;:&quot;STRING&quot;,&quot;size&quot;:&quot;256&quot;, &quot;datapath&quot;:&quot;@.LITERAL&quot;}&#10;]}&#10;,&quot;Rows&quot;:[&#10;&#9;{&quot;RowDataDiscription&quot;:&quot;integer_zero string&quot;,&quot;STRING&quot;:&quot;0&quot;,&quot;INT&quot;:&quot;0&quot;,&quot;FLOAT&quot;:&quot;0&quot;,&quot;BIGDECIMAL&quot;:&quot;0&quot;,&quot;DATE&quot;:&quot;0&quot;,&quot;TIME&quot;:&quot;0&quot;,&quot;DATETIME&quot;:&quot;0&quot;,&quot;LITERAL&quot;:&quot;0&quot;},&#10;&#9;{&quot;RowDataDiscription&quot;:&quot;integer_zero Literal(Exclude datetime type)&quot;,&quot;STRING&quot;:0,&quot;INT&quot;:0,&quot;FLOAT&quot;:0,&quot;BIGDECIMAL&quot;:0,&quot;DATE&quot;:&quot;0&quot;,&quot;TIME&quot;:&quot;0&quot;,&quot;DATETIME&quot;:&quot;0&quot;,&quot;LITERAL&quot;:0},&#10;&#10;&#9;{&quot;RowDataDiscription&quot;:&quot;integer_positive string&quot;,&quot;STRING&quot;:&quot;123&quot;,&quot;INT&quot;:&quot;123&quot;,&quot;FLOAT&quot;:&quot;123&quot;,&quot;BIGDECIMAL&quot;:&quot;123&quot;,&quot;DATE&quot;:&quot;123&quot;,&quot;TIME&quot;:&quot;123&quot;,&quot;DATETIME&quot;:&quot;123&quot;,&quot;LITERAL&quot;:&quot;123&quot;},&#10;&#9;{&quot;RowDataDiscription&quot;:&quot;integer_positive Literal(Exclude datetime type)&quot;,&quot;STRING&quot;:123,&quot;INT&quot;:123,&quot;FLOAT&quot;:123,&quot;BIGDECIMAL&quot;:123,&quot;DATE&quot;:&quot;123&quot;,&quot;TIME&quot;:&quot;123&quot;,&quot;DATETIME&quot;:&quot;123&quot;,&quot;LITERAL&quot;:123},&#10;&#10;&#9;{&quot;RowDataDiscription&quot;:&quot;integer_negative string&quot;,&quot;STRING&quot;:&quot;-123&quot;,&quot;INT&quot;:&quot;-123&quot;,&quot;FLOAT&quot;:&quot;-123&quot;,&quot;BIGDECIMAL&quot;:&quot;-123&quot;,&quot;DATE&quot;:&quot;-123&quot;,&quot;TIME&quot;:&quot;-123&quot;,&quot;DATETIME&quot;:&quot;-123&quot;,&quot;LITERAL&quot;:&quot;-123&quot;},&#10;&#9;{&quot;RowDataDiscription&quot;:&quot;integer_negative Literal(Exclude datetime type)&quot;,&quot;STRING&quot;:-123,&quot;INT&quot;:-123,&quot;FLOAT&quot;:-123,&quot;BIGDECIMAL&quot;:&quot;-123&quot;,&quot;DATE&quot;:&quot;-123&quot;,&quot;TIME&quot;:&quot;-123&quot;,&quot;DATETIME&quot;:&quot;-123&quot;,&quot;LITERAL&quot;:-123},&#10;&#10;&#9;{&quot;RowDataDiscription&quot;:&quot;integer_large string&quot;,&quot;STRING&quot;:&quot;1234567890123450000&quot;,&quot;INT&quot;:&quot;1234567890123450000&quot;,&quot;FLOAT&quot;:&quot;1234567890123450000&quot;,&quot;BIGDECIMAL&quot;:&quot;1234567890123450000&quot;,&quot;DATE&quot;:&quot;1234567890123450000&quot;,&quot;TIME&quot;:&quot;1234567890123450000&quot;,&quot;DATETIME&quot;:&quot;1234567890123450000&quot;,&quot;LITERAL&quot;:&quot;1234567890123450000&quot;},&#10;&#9;{&quot;RowDataDiscription&quot;:&quot;integer_large Literal(Exclude datetime type)&quot;,&quot;STRING&quot;:1234567890123450000,&quot;INT&quot;:1234567890123450000,&quot;FLOAT&quot;:1234567890123450000,&quot;BIGDECIMAL&quot;:1234567890123450000,&quot;DATE&quot;:&quot;1234567890123450000&quot;,&quot;TIME&quot;:&quot;1234567890123450000&quot;,&quot;DATETIME&quot;:&quot;1234567890123450000&quot;,&quot;LITERAL&quot;:1234567890123450000},&#10;&#10;&#9;{&quot;RowDataDiscription&quot;:&quot;float_simple string&quot;,&quot;STRING&quot;:&quot;1.23&quot;,&quot;INT&quot;:&quot;1.23&quot;,&quot;FLOAT&quot;:&quot;1.23&quot;,&quot;BIGDECIMAL&quot;:&quot;1.23&quot;,&quot;DATE&quot;:&quot;1.23&quot;,&quot;TIME&quot;:&quot;1.23&quot;,&quot;DATETIME&quot;:&quot;1.23&quot;,&quot;LITERAL&quot;:&quot;1.23&quot;},&#10;&#9;{&quot;RowDataDiscription&quot;:&quot;float_simple Literal(Exclude datetime type)&quot;,&quot;STRING&quot;:1.23,&quot;INT&quot;:1.23,&quot;FLOAT&quot;:1.23,&quot;BIGDECIMAL&quot;:1.23,&quot;DATE&quot;:&quot;1.23&quot;,&quot;TIME&quot;:&quot;1.23&quot;,&quot;DATETIME&quot;:&quot;1.23&quot;,&quot;LITERAL&quot;:1.23},&#10;&#10;&#9;{&quot;RowDataDiscription&quot;:&quot;float_negative string&quot;,&quot;STRING&quot;:&quot;-1.23&quot;,&quot;INT&quot;:&quot;-1.23&quot;,&quot;FLOAT&quot;:&quot;-1.23&quot;,&quot;BIGDECIMAL&quot;:&quot;-1.23&quot;,&quot;DATE&quot;:&quot;-1.23&quot;,&quot;TIME&quot;:&quot;-1.23&quot;,&quot;DATETIME&quot;:&quot;-1.23&quot;,&quot;LITERAL&quot;:&quot;-1.23&quot;},&#10;&#9;{&quot;RowDataDiscription&quot;:&quot;float_negative Literal(Exclude datetime type)&quot;,&quot;STRING&quot;:-1.23,&quot;INT&quot;:-1.23,&quot;FLOAT&quot;:-1.23,&quot;BIGDECIMAL&quot;:-1.23,&quot;DATE&quot;:&quot;-1.23&quot;,&quot;TIME&quot;:&quot;-1.23&quot;,&quot;DATETIME&quot;:&quot;-1.23&quot;,&quot;LITERAL&quot;:-1.23},&#10;&#10;&#9;{&quot;RowDataDiscription&quot;:&quot;float_exponent_positive string&quot;,&quot;STRING&quot;:&quot;1e10&quot;,&quot;INT&quot;:&quot;1e10&quot;,&quot;FLOAT&quot;:&quot;1e10&quot;,&quot;BIGDECIMAL&quot;:&quot;1e10&quot;,&quot;DATE&quot;:&quot;1e10&quot;,&quot;TIME&quot;:&quot;1e10&quot;,&quot;DATETIME&quot;:&quot;1e10&quot;,&quot;LITERAL&quot;:&quot;1e10&quot;},&#10;&#9;{&quot;RowDataDiscription&quot;:&quot;float_exponent_positive Literal(Exclude datetime type)&quot;,&quot;STRING&quot;:1e10,&quot;INT&quot;:1e10,&quot;FLOAT&quot;:1e10,&quot;BIGDECIMAL&quot;:1e10,&quot;DATE&quot;:&quot;1e10&quot;,&quot;TIME&quot;:&quot;1e10&quot;,&quot;DATETIME&quot;:&quot;1e10&quot;,&quot;LITERAL&quot;:1e10},&#10;&#10;&#9;{&quot;RowDataDiscription&quot;:&quot;float_exponent_negative string&quot;,&quot;STRING&quot;:&quot;1e-10&quot;,&quot;INT&quot;:&quot;1e-10&quot;,&quot;FLOAT&quot;:&quot;1e-10&quot;,&quot;BIGDECIMAL&quot;:&quot;1e-10&quot;,&quot;DATE&quot;:&quot;1e-10&quot;,&quot;TIME&quot;:&quot;1e-10&quot;,&quot;DATETIME&quot;:&quot;1e-10&quot;,&quot;LITERAL&quot;:&quot;1e-10&quot;},&#10;&#9;{&quot;RowDataDiscription&quot;:&quot;float_exponent_negative Literal(Exclude datetime type)&quot;,&quot;STRING&quot;:1e-10,&quot;INT&quot;:1e-10,&quot;FLOAT&quot;:1e-10,&quot;BIGDECIMAL&quot;:1e-10,&quot;DATE&quot;:&quot;1e-10&quot;,&quot;TIME&quot;:&quot;1e-10&quot;,&quot;DATETIME&quot;:&quot;1e-10&quot;,&quot;LITERAL&quot;:1e-10},&#10;&#10;&#9;{&quot;RowDataDiscription&quot;:&quot;float_exponent_signed string&quot;,&quot;STRING&quot;:&quot;-1.23E+10&quot;,&quot;INT&quot;:&quot;-1.23E+10&quot;,&quot;FLOAT&quot;:&quot;-1.23E+10&quot;,&quot;BIGDECIMAL&quot;:&quot;-1.23E+10&quot;,&quot;DATE&quot;:&quot;-1.23E+10&quot;,&quot;TIME&quot;:&quot;-1.23E+10&quot;,&quot;DATETIME&quot;:&quot;-1.23E+10&quot;,&quot;LITERAL&quot;:&quot;-1.23E+10&quot;},&#10;&#9;{&quot;RowDataDiscription&quot;:&quot;float_exponent_signed Literal(Exclude datetime type)&quot;,&quot;STRING&quot;:-1.23E+10,&quot;INT&quot;:-1.23E+10,&quot;FLOAT&quot;:-1.23E+10,&quot;BIGDECIMAL&quot;:-1.23E+10,&quot;DATE&quot;:&quot;-1.23E+10&quot;,&quot;TIME&quot;:&quot;-1.23E+10&quot;,&quot;DATETIME&quot;:&quot;-1.23E+10&quot;,&quot;LITERAL&quot;:-1.23E+10},&#10;&#10;&#9;{&quot;RowDataDiscription&quot;:&quot;ALL empty string&quot;,&quot;STRING&quot;:&quot;&quot;,&quot;INT&quot;:&quot;&quot;,&quot;FLOAT&quot;:&quot;&quot;,&quot;BIGDECIMAL&quot;:&quot;&quot;,&quot;DATE&quot;:&quot;&quot;,&quot;TIME&quot;:&quot;&quot;,&quot;DATETIME&quot;:&quot;&quot;,&quot;LITERAL&quot;:&quot;&quot;},&#10;&#10;&#9;{&quot;RowDataDiscription&quot;:&quot;Literals true_value&quot;,&quot;STRING&quot;:true,&quot;INT&quot;:true,&quot;FLOAT&quot;:true,&quot;BIGDECIMAL&quot;:true,&quot;DATE&quot;:&quot;&quot;,&quot;TIME&quot;:&quot;&quot;,&quot;DATETIME&quot;:&quot;&quot;,&quot;LITERAL&quot;:true},&#10;&#9;{&quot;RowDataDiscription&quot;:&quot;Literals false_value&quot;,&quot;STRING&quot;:false,&quot;INT&quot;:false,&quot;FLOAT&quot;:false,&quot;BIGDECIMAL&quot;:false,&quot;DATE&quot;:&quot;&quot;,&quot;TIME&quot;:&quot;&quot;,&quot;DATETIME&quot;:&quot;&quot;,&quot;LITERAL&quot;:false},&#10;&#9;{&quot;RowDataDiscription&quot;:&quot;Literals null_value&quot;,&quot;STRING&quot;:null,&quot;INT&quot;:null,&quot;FLOAT&quot;:null,&quot;BIGDECIMAL&quot;:null,&quot;DATE&quot;:&quot;&quot;,&quot;TIME&quot;:&quot;&quot;,&quot;DATETIME&quot;:&quot;&quot;,&quot;LITERAL&quot;:null}&#10;]}&#10;"/>
+        <Grid id="Grid00" taborder="1" left="13" top="220" width="1171" binddataset="Dataset00" bottom="180">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="352"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="50"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="RowDataDiscription"/>
+                <Cell col="1" text="STRING"/>
+                <Cell col="2" text="INT"/>
+                <Cell col="3" text="FLOAT"/>
+                <Cell col="4" text="BIGDECIMAL"/>
+                <Cell col="5" text="DATE"/>
+                <Cell col="6" text="TIME"/>
+                <Cell col="7" text="DATETIME"/>
+                <Cell col="8" text="LITERAL"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:RowDataDiscription" wordWrap="english" edittype="textarea"/>
+                <Cell col="1" text="bind:STRING" edittype="textarea"/>
+                <Cell col="2" text="bind:INT" edittype="textarea"/>
+                <Cell col="3" text="bind:FLOAT" edittype="textarea"/>
+                <Cell col="4" text="bind:BIGDECIMAL" edittype="textarea"/>
+                <Cell col="5" text="bind:DATE" edittype="textarea"/>
+                <Cell col="6" text="bind:TIME" edittype="textarea"/>
+                <Cell col="7" text="bind:DATETIME" edittype="textarea"/>
+                <Cell col="8" text="bind:LITERAL"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btnLoadJSON" taborder="2" text="Dataset.loadJSON" left="150" top="161" width="190" height="50" onclick="btnLoadJSON_onclick"/>
+        <Button id="btnClearDataset" taborder="3" text="Clear Dataset" left="18" top="161" width="120" height="50" onclick="btnClearDataset_onclick"/>
+        <Button id="btnJSONparse" taborder="4" text="JSON.parse -&gt; DataObject" left="355" top="161" width="190" height="50" onclick="btnJSONparse_onclick"/>
+        <TextArea id="taSaveJSON" taborder="5" left="13" width="1587" height="720" bottom="-600"/>
+        <Button id="btnSaveJSON" taborder="6" text="Dataset.saveJSON" left="150" width="190" height="50" onclick="btnSaveJSON_onclick" bottom="123"/>
+        <Button id="btnJSONstringify" taborder="7" text="ADataObject -&gt; JSON.stringify" left="355" width="190" height="50" onclick="btnJSONstringify_onclick" bottom="123"/>
+        <Button id="Button00" taborder="8" text="saveXML" left="599" top="170" width="111" height="40" onclick="Button00_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00" binddataobject="DataObject00" dataobjectpath="$.Rows[*]" updatecontrol="false" dataobjectbindmode="twoway">
+        <ColumnInfo>
+          <Column id="RowDataDiscription" type="STRING" size="256" datapath="@.RowDataDiscription" prop="TEXT" sumtext="aaa"/>
+          <Column id="STRING" type="STRING" size="256" datapath="@.STRING"/>
+          <Column id="INT" type="INT" size="256" datapath="@.INT" prop="MAX"/>
+          <Column id="FLOAT" type="FLOAT" size="256" datapath="@.FLOAT" prop="MIN"/>
+          <Column id="BIGDECIMAL" type="BIGDECIMAL" size="256" datapath="@.BIGDECIMAL"/>
+          <Column id="DATE" type="DATE" size="256" datapath="@.DATE"/>
+          <Column id="TIME" type="TIME" size="256" datapath="@.TIME"/>
+          <Column id="DATETIME" type="DATETIME" size="256" datapath="@.DATETIME"/>
+          <Column id="LITERAL" type="STRING" size="256" datapath="@.LITERAL"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="STRING">AAA</Col>
+            <Col id="INT">0</Col>
+            <Col id="FLOAT">0.0</Col>
+            <Col id="BIGDECIMAL">0.0</Col>
+            <Col id="DATE">20260218</Col>
+            <Col id="TIME">11:00</Col>
+            <Col id="DATETIME">20260219231530</Col>
+            <Col id="RowDataDiscription">ALL Strings</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <DataObject id="DataObject00">
+        <Contents><![CDATA[{
+	"id" : "Dataset00",
+	"ColumnInfo" : {
+		"Column" : [
+			{
+				"id" : "RowDataDiscription",
+				"type" : "STRING",
+				"size" : "256"
+			},
+			{
+				"id" : "STRING",
+				"type" : "STRING",
+				"size" : "256"
+			},
+			{
+				"id" : "INT",
+				"type" : "INT",
+				"size" : "256"
+			},
+			{
+				"id" : "FLOAT",
+				"type" : "FLOAT",
+				"size" : "256"
+			},
+			{
+				"id" : "BIGDECIMAL",
+				"type" : "BIGDECIMAL",
+				"size" : "256"
+			},
+			{
+				"id" : "DATE",
+				"type" : "DATE",
+				"size" : "256"
+			},
+			{
+				"id" : "TIME",
+				"type" : "TIME",
+				"size" : "256"
+			},
+			{
+				"id" : "DATETIME",
+				"type" : "DATETIME",
+				"size" : "256"
+			},
+			{
+				"id" : "LITERAL",
+				"type" : "STRING",
+				"size" : "256"
+			}
+		]
+	},
+	"Rows" : [
+		{
+			"RowDataDiscription" : "ALL Strings",
+			"STRING" : "AAA",
+			"INT" : "0",
+			"FLOAT" : "0",
+			"BIGDECIMAL" : "0",
+			"DATE" : "20260218",
+			"TIME" : "110000000",
+			"DATETIME" : "20260219231530000",
+			"LITERAL" : "true"
+		},
+		{
+			"RowDataDiscription" : "ALL Strings",
+			"STRING" : "AAA",
+			"INT" : "0",
+			"FLOAT" : "0",
+			"BIGDECIMAL" : "0",
+			"DATE" : "20260218",
+			"TIME" : "110000000",
+			"DATETIME" : "20260219231530000",
+			"LITERAL" : "true"
+		}
+	]
+}]]></Contents>
+      </DataObject>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.btnLoadJSON_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sJSON = this.taLoadJSON.value;
+	try {
+		this.Dataset00.loadJSON(sJSON);
+	} catch(e) {
+		trace("Dataset.loadJSON Exception : " + e);
+		alert("Dataset.loadJSON Exception : " + e);
+	}
+};
+
+this.btnClearDataset_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Dataset00.clearData();
+};
+
+this.btnJSONparse_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sJSON = this.taLoadJSON.value;
+	try {
+		var oJSON = JSON.parse(sJSON);
+		trace("oJSON=[[[" + oJSON + "]]]");
+		this.DataObject00.set_data(oJSON);
+	} catch(e) {
+		trace("JSON.parse Exception : " + e);
+		alert("JSON.parse Exception : " + e);
+	}
+};
+
+this.btnSaveJSON_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	try {
+		var sJSON = this.Dataset00.saveJSON();
+		this.taSaveJSON.set_value(sJSON);
+	} catch(e) {
+		trace("Dataset.saveJSON() Fire Exception!!\n" + e);
+		alert("Dataset.saveJSON() Fire Exception!!\n" + e);
+	}
+};
+
+this.btnJSONstringify_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	try {
+		var oJSON = this.DataObject00.data;
+		var sJSON = JSON.stringify(oJSON);
+		sJSON = sJSON.replaceAll("},", "},\n");
+		this.taSaveJSON.set_value(sJSON);
+	} catch(e) {
+		trace("DataObject sava JSON String Fire Exception!!\n" + e);
+		alert("DataObject sava JSON String Fire Exception!!\n" + e);
+	}
+};
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+	try {
+		this.taSaveJSON.set_value(this.Dataset00.saveXML());
+	} catch(e) {
+		trace("saveXML Exception!! : " + e);
+		alert("saveXML Exception!! : " + e);
+	}
+};
+
+this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.taLoadJSON.set_value(this.taSaveJSON.value);
+};
+]]></Script>
+  </Form>
+</FDL>

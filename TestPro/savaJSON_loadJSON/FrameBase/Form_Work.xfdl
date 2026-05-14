@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Work" width="1280" height="720" titletext="Form_Work">
+    <Layouts>
+      <Layout width="1280" height="720" screenid="Desktop_screen">
+        <Combo id="Combo00" taborder="0" text="Combo00" left="14" top="7" width="480" height="54" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" type="filterlike" oninnerdatachanged="Combo00_oninnerdatachanged" onitemchanged="Combo00_onitemchanged">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">Base::RP_104479_TSS11859_saveJSON_loadJSON.xfdl</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">Base::RP_104483_TSS11859_saveJSON_loadJSON2.xfdl</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">Base::RP_104499_TSS11859_saveJSON_loadJSON2.xfdl</Col>
+                <Col id="codecolumn">3</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">4</Col>
+                <Col id="datacolumn">Base::RP_104535_tss11877_SaveJSON_StructureError.xfdl</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">5</Col>
+                <Col id="datacolumn">Base::RP_104539_tss11881_SaveJSON_ValueTypeChangeError.xfdl</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+        <Div id="Div00" taborder="1" text="Div00" left="10" top="80" right="10" bottom="10"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.Combo00_oninnerdatachanged = function(obj:nexacro.Combo,e:nexacro.InnerdataChangedEventInfo)
+{
+	
+};
+
+this.Combo00_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.Div00.set_url(e.posttext);
+	
+};
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="TSS11859_saveJSON_loadJSON" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Static id="Static00" taborder="0" text="Load JSON String : " left="11" top="15" width="129" height="25"/>
+        <TextArea id="taLoadJSONString" taborder="1" left="130" top="10" width="1050" height="120" value="{&quot;id&quot;: &quot;Dataset00&quot;,&quot;ColumnInfo&quot; :{&quot;Column&quot;:[{ &quot;id&quot;:&quot;Column1&quot;, &quot;type&quot;:&quot;STRING&quot;, &quot;size&quot;:&quot;256&quot; },{ &quot;id&quot;:&quot;Column2&quot;, &quot;type&quot;:&quot;STRING&quot;, &quot;size&quot;:&quot;256&quot; },{ &quot;id&quot;:&quot;Column3&quot;, &quot;type&quot;:&quot;STRING&quot;, &quot;size&quot;:&quot;256&quot; }]},&quot;Rows&quot;:[{ &quot;Column1&quot;:&quot;AAA\nBBB&quot;, &quot;Column2&quot;:&quot;CCC\\nDDD&quot;, &quot;Column3&quot;:&quot;EEE\\\\nFFF&quot;}]}" wordWrap="english"/>
+        <Grid id="Grid00" taborder="2" left="30" top="231" width="300" height="120" binddataset="Dataset00" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="66"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Column1"/>
+                <Cell col="1" text="Column2"/>
+                <Cell col="2" text="Column3"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column1"/>
+                <Cell col="1" text="bind:Column2"/>
+                <Cell col="2" text="bind:Column3"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="Grid00_00" taborder="3" left="420" top="230" width="300" height="120" binddataset="Dataset01" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="63"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Column1"/>
+                <Cell col="1" text="Column2"/>
+                <Cell col="2" text="Column3"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column1"/>
+                <Cell col="1" text="bind:Column2"/>
+                <Cell col="2" text="bind:Column3"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btnLoadJSON01" taborder="4" text="Dataset.loadJSON()" left="30" top="160" width="300" height="50" onclick="btnLoadJSON_onclick"/>
+        <Button id="btnJSONParseToLoadJSON" taborder="5" text="JSON.parse -&gt; Dataobject.set_data()" left="420" top="160" width="300" height="50" onclick="btnJSONParseToLoadJSON_onclick"/>
+        <Button id="btnSaveJSON01" taborder="6" text="Dataset.saveJSON()" left="30" top="369" width="300" height="50" onclick="btnSaveJSON01_onclick"/>
+        <Static id="Static00_00" taborder="7" text="Save JSON String : " left="11" top="468" width="129" height="25"/>
+        <TextArea id="taSaveJSONString" taborder="8" left="130" top="463" width="1050" height="367" wordWrap="english"/>
+        <Button id="btnJSONStringify" taborder="9" text="Dataobject.data -&gt; JSON.stringify" left="420" top="369" width="300" height="50" onclick="btnJSONStringify_onclick"/>
+        <Button id="btnCopySaveJSONStringToLoadJSONString" taborder="10" text="Copy Save JSON String -&gt; Load JSON String" left="810" top="247" width="300" height="93" onclick="btnCopySaveJSONStringToLoadJSONString_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column1">DAAA
+BBB</Col>
+            <Col id="Column2">DCCC\nDDD</Col>
+            <Col id="Column3">DEEE\\nFFF</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="Dataset01" binddataobject="DataObject00" dataobjectpath="$.Rows[*]">
+        <ColumnInfo>
+          <Column id="Column1" datapath="@.Column1" type="STRING" size="256"/>
+          <Column id="Column2" datapath="@.Column2" type="STRING" size="256"/>
+          <Column id="Column3" datapath="@.Column3" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column1">AAA
+BBB</Col>
+            <Col id="Column2">CCC\nDDD</Col>
+            <Col id="Column3">EEE\\nFFF</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="Dataset02">
+        <ColumnInfo>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column1">DAAA
+BBB</Col>
+            <Col id="Column2">DCCC\nDDD</Col>
+            <Col id="Column3">DEEE\\nFFF</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <DataObject id="DataObject00">
+        <Contents><![CDATA[{
+	"id": "Dataset00",
+	"ColumnInfo" :
+	{
+		"Column":
+		[
+			{ "id":"Column1", "type":"STRING", "size":"256" },
+			{ "id":"Column2", "type":"STRING", "size":"256" },
+			{ "id":"Column3", "type":"STRING", "size":"256" }
+		]
+	},
+	"Rows":
+	[
+		{
+		 "Column1":"JAAA\nBBB", "Column2":"JCCC\\nDDD", "Column3":"JEEE\\\\nFFF"
+		}
+	]
+}
+]]></Contents>
+      </DataObject>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.btnLoadJSON_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sJSON = this.taLoadJSONString.value;
+	trace("JSON String = [[[" + sJSON + "]]]\n");
+	this.Dataset00.loadJSON(sJSON);
+};
+
+this.btnJSONParseToLoadJSON_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sJSON = this.taLoadJSONString.value;
+	trace("JSON String = [[[" + sJSON + "]]]\n");
+	var oJSON = JSON.parse(sJSON);
+	this.DataObject00.set_data(oJSON);
+};
+
+
+this.btnSaveJSON01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sJSON = this.Dataset00.saveJSON();
+	trace("JSON String = [[[" + sJSON + "]]]\n");
+	this.taSaveJSONString.set_value(sJSON);
+};
+
+this.btnJSONStringify_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var oJSON = this.DataObject00.data;
+	var sJSON = JSON.stringify(oJSON);
+	trace("JSON String = [[[" + sJSON + "]]]\n");
+	this.taSaveJSONString.set_value(sJSON);
+};
+
+this.btnCopySaveJSONStringToLoadJSONString_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.taLoadJSONString.set_value(this.taSaveJSONString.value);
+};
+]]></Script>
+  </Form>
+</FDL>

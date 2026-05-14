@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="sample_grid_24" left="0" top="0" width="1024" height="768" titletext="New Form">
+    <Layouts>
+      <Layout height="768" width="1024">
+        <Button id="btn_group" taborder="3" text="GROUP&#13;&#10;by Company" left="480" top="403" width="100" height="32" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="btn_group_onclick" font="9pt Arial"/>
+        <Grid id="Grid00" taborder="0" left="30" top="182" width="560" height="211" binddataset="Dataset00" autofittype="col" autosizingtype="row" extendsizetype="none" autosizebandtype="body" text="" autoenter="none" fillareatype="none" selecttype="row" cellsizingtype="none" cellmovingtype="none" cellsizebandtype="body" border="">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="160"/>
+                <Column size="80"/>
+                <Column size="120"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Name" border=""/>
+                <Cell col="1" text="Address" border=""/>
+                <Cell col="2" text="Company" border=""/>
+                <Cell col="3" text="Department" border=""/>
+                <Cell col="4" text="Salary" border=""/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Name" textAlign="left" border=""/>
+                <Cell col="1" text="bind:Address" textAlign="left" wordWrap="char" border=""/>
+                <Cell col="2" text="bind:Company" textAlign="left" border=""/>
+                <Cell col="3" text="bind:Department" textAlign="left" wordWrap="english" border=""/>
+                <Cell col="4" text="bind:Salary" displaytype="currency" textAlign="right" border=""/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <TextArea id="taLoadJSON" taborder="1" left="29" top="7" width="821" height="124" value="{&#10;&#9;&quot;id&quot;: &quot;Dataset00&quot;,&#10;&#9;&quot;ColumnInfo&quot; :&#10;&#9;{&#10;&#9;&#9;&quot;Column&quot;:&#10;&#9;&#9;[&#10;&#9;&#9;&#9;{ &quot;id&quot;:&quot;Name&quot;, &quot;type&quot;:&quot;STRING&quot;, &quot;size&quot;:&quot;100&quot;, &quot;datapath&quot;:&quot;@.Name&quot; },&#10;&#9;&#9;&#9;{ &quot;id&quot;:&quot;Address&quot;, &quot;type&quot;:&quot;STRING&quot;, &quot;size&quot;:&quot;90&quot;, &quot;datapath&quot;:&quot;@.Address&quot; },&#10;&#9;&#9;&#9;{ &quot;id&quot;:&quot;Company&quot;, &quot;type&quot;:&quot;STRING&quot;, &quot;size&quot;:&quot;80&quot;, &quot;prop&quot;:&quot;TEXT&quot;, &quot;sumtext&quot;:&quot;デーパート毎&quot;, &quot;datapath&quot;:&quot;@.Company&quot; },&#10;&#9;&#9;&#9;{ &quot;id&quot;:&quot;Department&quot;, &quot;type&quot;:&quot;STRING&quot;, &quot;size&quot;:&quot;110&quot;, &quot;prop&quot;:&quot;TEXT&quot;, &quot;sumtext&quot;:&quot;合計&quot;, &quot;datapath&quot;:&quot;@.Department&quot; },&#10;&#9;&#9;&#9;{ &quot;id&quot;:&quot;Salary&quot;, &quot;type&quot;:&quot;BIGDECIMAL&quot;, &quot;size&quot;:&quot;200&quot;, &quot;prop&quot;:&quot;SUM&quot;, &quot;datapath&quot;:&quot;@.Salary&quot; }&#10;&#9;&#9;]&#10;&#9;},&#10;&#9;&quot;Rows&quot;:&#10;&#9;[&#10;&#9;&#9;{&#10;&#9;&#9; &quot;Name&quot;:&quot;John&quot;, &quot;Address&quot;:&quot;Seoul, KOREA&quot;, &quot;Company&quot;:&quot;1dollar&quot;, &quot;Department&quot;:&quot;Sales&quot;, &quot;Salary&quot;:&quot;15000&quot;&#10;&#9;&#9;},&#10;&#9;&#9;{&#10;&#9;&#9; &quot;Name&quot;:&quot;James&quot;, &quot;Address&quot;:&quot;Barcelona, Spain&quot;, &quot;Company&quot;:&quot;EBOT&quot;, &quot;Department&quot;:&quot;Consulting&quot;, &quot;Salary&quot;:&quot;25000&quot;&#10;&#9;&#9;},&#10;&#9;&#9;{&#10;&#9;&#9; &quot;Name&quot;:&quot;Donald&quot;, &quot;Address&quot;:&quot;Califonia, USA&quot;, &quot;Company&quot;:&quot;EBOT&quot;, &quot;Department&quot;:&quot;Research Institute&quot;, &quot;Salary&quot;:&quot;1000000&quot;&#10;&#9;&#9;},&#10;&#9;&#9;{&#10;&#9;&#9; &quot;Name&quot;:&quot;Lisa&quot;, &quot;Address&quot;:&quot;London, United Kingdom&quot;, &quot;Company&quot;:&quot;1dollar&quot;, &quot;Department&quot;:&quot;Quality Assurance&quot;, &quot;Salary&quot;:&quot;3000&quot;&#10;&#9;&#9;},&#10;&#9;&#9;{&#10;&#9;&#9; &quot;Name&quot;:&quot;Joe&quot;, &quot;Address&quot;:&quot;São Paulo, Brazil&quot;, &quot;Company&quot;:&quot;hangul&quot;, &quot;Department&quot;:&quot;R&amp;D&quot;, &quot;Salary&quot;:&quot;8600&quot;&#10;&#9;&#9;},&#10;&#9;&#9;{&#10;&#9;&#9; &quot;Name&quot;:&quot;Michael&quot;, &quot;Address&quot;:&quot;Mumbai, India&quot;, &quot;Company&quot;:&quot;1dollar&quot;, &quot;Department&quot;:&quot;Personnel&quot;, &quot;Salary&quot;:&quot;1300&quot;&#10;&#9;&#9;},&#10;&#9;&#9;{&#10;&#9;&#9; &quot;Name&quot;:&quot;Lilli&quot;, &quot;Address&quot;:&quot;Ankara, Turkey&quot;, &quot;Company&quot;:&quot;hangul&quot;, &quot;Department&quot;:&quot;Quality Assurance&quot;, &quot;Salary&quot;:&quot;4400&quot;&#10;&#9;&#9;},&#10;&#9;&#9;{&#10;&#9;&#9; &quot;Name&quot;:&quot;Colt&quot;, &quot;Address&quot;:&quot;Sydney, NSW, Australia &quot;, &quot;Company&quot;:&quot;hangul&quot;, &quot;Department&quot;:&quot;Sales&quot;, &quot;Salary&quot;:&quot;62000&quot;&#10;&#9;&#9;}&#10;&#9;]&#10;}"/>
+        <Button id="btnLoadJSON" taborder="2" text="Dataset.loadJSON" left="30" top="139" width="122" height="33" onclick="btnLoadJSON_onclick"/>
+        <Button id="btnCopySaveToLoad" taborder="4" text="Copy Save to Load" left="850" top="10" width="164" height="580" onclick="btnCopySaveToLoad_onclick"/>
+        <Button id="btnSaveJSON" taborder="5" text="Dataset.saveJSON" left="30" top="404" width="122" height="33" onclick="btnSaveJSON_onclick"/>
+        <Button id="btnJSONparse" taborder="6" text="JSON.parse -&gt; DataObject" left="178" top="139" width="182" height="33" onclick="btnJSONparse_onclick"/>
+        <Button id="btnJSONstringify" taborder="7" text="DataObject -&gt; JSON.stringify" left="178" top="404" width="182" height="33" onclick="btnJSONstringify_onclick"/>
+        <Button id="btnClearDataset" taborder="8" text="Clear Data" left="490" top="141" width="90" height="39" onclick="btnClearDataset_onclick"/>
+        <Button id="btnClearAllDataset" taborder="9" text="Clear All Dataset" left="380" top="141" width="100" height="39" onclick="btnClearAllDataset_onclick"/>
+        <Button id="btnClearGroup" taborder="10" text="Clear GROUP" left="380" top="404" width="100" height="32" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" font="9pt Arial" onclick="btnClearGroup_onclick"/>
+        <Button id="btnCheckColumnInfo" taborder="11" text="Check Column Info" left="598" top="183" width="143" height="52" onclick="btnCheckColumnInfo_onclick"/>
+        <Button id="Button00" taborder="12" text="saveXML" left="600" top="240" width="141" height="47" onclick="Button00_onclick"/>
+        <Static id="Static00" taborder="13" text="Static00" left="0" top="450" width="850" height="466"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00" binddataobject="DataObject00" dataobjectpath="$.Rows[*]">
+        <ColumnInfo>
+          <Column id="Name" type="STRING" size="256" prop="TEXT" sumtext="グループ" datapath="@.Name" description="desc AAA"/>
+          <Column id="Address" type="STRING" size="256" datapath="@.Address" description="desc BBB"/>
+          <Column id="Company" type="STRING" size="256" datapath="@.Company" description="desc CCC"/>
+          <Column id="Department" type="STRING" size="256" datapath="@.Department" description="desc DDD" prop="TEXT" sumtext="最小値"/>
+          <Column id="Salary" type="INT" size="256" prop="MIN" datapath="@.Salary" description="desc EEE"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Name">John</Col>
+            <Col id="Address">Seoul, KOREA</Col>
+            <Col id="Company">1dollar</Col>
+            <Col id="Department">Sales</Col>
+            <Col id="Salary">15000</Col>
+          </Row>
+          <Row>
+            <Col id="Name">James</Col>
+            <Col id="Address">Barcelona, Spain</Col>
+            <Col id="Company">EBOT</Col>
+            <Col id="Department">Consulting</Col>
+            <Col id="Salary">25000</Col>
+          </Row>
+          <Row>
+            <Col id="Name">Donald</Col>
+            <Col id="Address">Califonia, USA</Col>
+            <Col id="Company">EBOT</Col>
+            <Col id="Department">Research Institute</Col>
+            <Col id="Salary">1000000</Col>
+          </Row>
+          <Row>
+            <Col id="Name">Lisa</Col>
+            <Col id="Address">London, United Kingdom</Col>
+            <Col id="Company">1dollar</Col>
+            <Col id="Department">Quality Assurance</Col>
+            <Col id="Salary">3000</Col>
+          </Row>
+          <Row>
+            <Col id="Name">Joe</Col>
+            <Col id="Address">São Paulo, Brazil</Col>
+            <Col id="Company">hangul</Col>
+            <Col id="Department">R&amp;D</Col>
+            <Col id="Salary">8600</Col>
+          </Row>
+          <Row>
+            <Col id="Name">Michael</Col>
+            <Col id="Address">Mumbai, India</Col>
+            <Col id="Company">1dollar</Col>
+            <Col id="Department">Personnel</Col>
+            <Col id="Salary">1300</Col>
+          </Row>
+          <Row>
+            <Col id="Name">Lilli</Col>
+            <Col id="Address">Ankara, Turkey</Col>
+            <Col id="Company">hangul</Col>
+            <Col id="Department">Quality Assurance</Col>
+            <Col id="Salary">4400</Col>
+          </Row>
+          <Row>
+            <Col id="Name">Colt</Col>
+            <Col id="Address">Sydney, NSW, Australia </Col>
+            <Col id="Company">hangul</Col>
+            <Col id="Department">Sales</Col>
+            <Col id="Salary">62000</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <DataObject id="DataObject00">
+        <Contents><![CDATA[{
+	"id" : "Dataset00",
+	"ColumnInfo" : {
+		"Column" : [
+			{
+				"id" : "Name",
+				"type" : "STRING",
+				"size" : "256",
+				"prop" : "TEXT",
+				"sumtext" : "合計"
+			},
+			{
+				"id" : "Address",
+				"type" : "STRING",
+				"size" : "256"
+			},
+			{
+				"id" : "Company",
+				"type" : "STRING",
+				"size" : "256"
+			},
+			{
+				"id" : "Department",
+				"type" : "STRING",
+				"size" : "256"
+			},
+			{
+				"id" : "Salary",
+				"type" : "INT",
+				"size" : "256",
+				"prop" : "MIN"
+			}
+		]
+	},
+	"Rows" : [
+		{
+			"Name" : "John",
+			"Address" : "Seoul, KOREA",
+			"Company" : "1dollar",
+			"Department" : "Sales",
+			"Salary" : "15000"
+		},
+		{
+			"Name" : "James",
+			"Address" : "Barcelona, Spain",
+			"Company" : "EBOT",
+			"Department" : "Consulting",
+			"Salary" : "25000"
+		},
+		{
+			"Name" : "Donald",
+			"Address" : "Califonia, USA",
+			"Company" : "EBOT",
+			"Department" : "Research Institute",
+			"Salary" : "1000000"
+		},
+		{
+			"Name" : "Lisa",
+			"Address" : "London, United Kingdom",
+			"Company" : "1dollar",
+			"Department" : "Quality Assurance",
+			"Salary" : "3000"
+		},
+		{
+			"Name" : "Joe",
+			"Address" : "São Paulo, Brazil",
+			"Company" : "hangul",
+			"Department" : "R&D",
+			"Salary" : "8600"
+		},
+		{
+			"Name" : "Michael",
+			"Address" : "Mumbai, India",
+			"Company" : "1dollar",
+			"Department" : "Personnel",
+			"Salary" : "1300"
+		},
+		{
+			"Name" : "Lilli",
+			"Address" : "Ankara, Turkey",
+			"Company" : "hangul",
+			"Department" : "Quality Assurance",
+			"Salary" : "4400"
+		},
+		{
+			"Name" : "Colt",
+			"Address" : "Sydney, NSW, Australia ",
+			"Company" : "hangul",
+			"Department" : "Sales",
+			"Salary" : "62000"
+		}
+	]
+}]]></Contents>
+      </DataObject>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[this.btn_group_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Dataset00.set_keystring("G:Company");	
+};
+this.btnLoadJSON_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sJSON = this.taLoadJSON.value;
+	try {
+		this.Dataset00.loadJSON(sJSON);
+	} catch(e) {
+		trace("Dataset.loadJSON Exception : " + e);
+		alert("Dataset.loadJSON Exception : " + e);
+	}
+};
+
+this.btnSaveJSON_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sJSON = this.Dataset00.saveJSON();
+	//this.taSaveJSON.set_value(sJSON);
+	this.Static00.set_text(sJSON);
+};
+
+this.btnCopySaveToLoad_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.taLoadJSON.set_value(this.taSaveJSON.value);
+};
+
+this.btnJSONparse_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sJSON = this.taLoadJSON.value;
+	try {
+		var oJSON = JSON.parse(sJSON);
+		trace("oJSON=[[[" + oJSON + "]]]");
+		this.DataObject00.set_data(oJSON);
+	} catch(e) {
+		trace("JSON.parse Exception : " + e);
+		alert("JSON.parse Exception : " + e);
+	}
+};
+
+this.btnJSONstringify_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var oJSON = this.DataObject00.data;
+	var sJSON = JSON.stringify(oJSON);
+	this.taSaveJSON.set_value(sJSON);
+};
+
+this.btnClearDataset_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Dataset00.clearData();
+};
+
+this.btnClearAllDataset_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Dataset00.clear();
+};
+
+this.btnClearGroup_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Dataset00.set_keystring("");	
+};
+
+this.btnCheckColumnInfo_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var iColCount = this.Dataset00.getColCount();
+	var sColInfo = "";
+	for(var i = 0; i < iColCount; i++) {
+		var oColInfo = this.Dataset00.getColumnInfo(i);
+		sColInfo += "" + oColInfo.name + " : type=" + oColInfo.type + "; size=" + oColInfo.size + "; prop=" + oColInfo.prop + "; sumtext=" + oColInfo.sumtext + "; datapath=" + oColInfo.datapath + ";\n";
+	}
+	sColInfo = "--- ColumnInfo ---------\n" + sColInfo + "---\n";
+	trace(sColInfo);
+	alert(sColInfo);
+};
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	trace(this.Dataset00.saveXML());
+};
+]]></Script>
+  </Form>
+</FDL>
