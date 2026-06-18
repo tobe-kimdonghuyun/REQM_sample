@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REST API JSON 통신 샘플</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f2f5;
+      color: #333;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    h1 { font-size: 1.4rem; font-weight: 600; margin-bottom: 20px; color: #1a1a2e; }
+
+    .container { max-width: 1060px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+
+    /* 탭 */
+    .tabs { display: flex; gap: 4px; border-bottom: 2px solid #e2e8f0; padding-bottom: 0; }
+
+    .tab-btn {
+      padding: 8px 20px;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #888;
+      cursor: pointer;
+    }
+
+    .tab-btn.active { color: #4f6ef7; border-bottom-color: #4f6ef7; }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: flex; flex-direction: column; gap: 16px; }
+
+    /* 카드 */
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    .card h2 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #888;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* 폼 요소 */
+    .field-group { margin-bottom: 14px; }
+    .field-group:last-child { margin-bottom: 0; }
+
+    label.field-label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    .url-row { display: flex; gap: 8px; align-items: center; }
+
+    select, input[type="text"] {
+      padding: 8px 10px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      color: #333;
+    }
+
+    select { background: #f9fafb; cursor: pointer; min-width: 90px; }
+    input[type="text"] { flex: 1; }
+
+    select:focus, input[type="text"]:focus, textarea:focus {
+      outline: none;
+      border-color: #4f6ef7;
+      box-shadow: 0 0 0 2px rgba(79,110,247,0.15);
+    }
+
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 0.83rem;
+      font-family: 'Consolas', monospace;
+      resize: vertical;
+      background: #fafafa;
+    }
+
+    /* 헤더 */
+    .header-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 8px; }
+
+    .header-row { display: flex; gap: 8px; align-items: center; }
+    .header-row input { flex: 1; }
+
+    .btn-icon {
+      background: none; border: 1px solid #d1d5db; border-radius: 6px;
+      padding: 6px 10px; cursor: pointer; font-size: 0.9rem; color: #888;
+    }
+    .btn-icon:hover { background: #f3f4f6; }
+
+    .btn-add-header {
+      font-size: 0.82rem; color: #4f6ef7;
+      background: none; border: none; cursor: pointer; padding: 2px 0;
+    }
+    .btn-add-header:hover { text-decoration: underline; }
+
+    /* 샘플 태그 */
+    .sample-urls { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+
+    .sample-tag {
+      background: #f0f4ff; border: 1px solid #c7d2fe;
+      color: #4f6ef7; border-radius: 4px;
+      padding: 3px 9px; font-size: 0.78rem; cursor: pointer;
+    }
+    .sample-tag:hover { background: #e0e7ff; }
+
+    /* 전송 버튼 */
+    .actions { display: flex; align-items: center; gap: 12px; }
+
+    .btn-send {
+      padding: 9px 26px; background: #4f6ef7; color: #fff;
+      border: none; border-radius: 6px; font-size: 0.9rem;
+      font-weight: 600; cursor: pointer; transition: background 0.15s;
+    }
+    .btn-send:hover { background: #3a56d4; }
+    .btn-send:disabled { background: #a0aec0; cursor: not-allowed; }
+
+    .spinner {
+      display: none; width: 18px; height: 18px;
+      border: 2px solid #d1d5db; border-top-color: #4f6ef7;
+      border-radius: 50%; animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* 응답 */
+    .response-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; min-height: 26px; }
+
+    .status-badge {
+      display: none; padding: 3px 10px; border-radius: 20px;
+      font-size: 0.82rem; font-weight: 700;
+    }
+    .status-badge.success { background: #d1fae5; color: #065f46; display: inline-block; }
+    .status-badge.error   { background: #fee2e2; color: #991b1b; display: inline-block; }
+
+    .response-time { font-size: 0.8rem; color: #888; }
+
+    .response-body { position: relative; }
+
+    .response-pre {
+      min-height: 180px; background: #1e1e2e; color: #cdd6f4;
+      border: none; border-radius: 6px; font-size: 0.83rem;
+      font-family: 'Consolas', monospace; line-height: 1.6;
+      padding: 14px; white-space: pre-wrap; word-break: break-all;
+    }
+    .response-pre.is-error { color: #f38ba8; }
+
+    .btn-copy {
+      position: absolute; top: 8px; right: 8px;
+      background: rgba(255,255,255,0.1); border: none; border-radius: 4px;
+      color: #cdd6f4; padding: 4px 10px; font-size: 0.75rem; cursor: pointer;
+    }
+    .btn-copy:hover { background: rgba(255,255,255,0.2); }
+
+    /* ── 에러 시뮬레이션 탭 ────────────────────────────────── */
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+
+    .scenario-card {
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      background: #fff;
+    }
+    .scenario-card:hover { border-color: #4f6ef7; box-shadow: 0 2px 8px rgba(79,110,247,0.15); }
+    .scenario-card.active { border-color: #4f6ef7; background: #f0f4ff; }
+
+    .scenario-card .sc-badge {
+      display: inline-block; font-size: 0.75rem; font-weight: 700;
+      padding: 2px 8px; border-radius: 12px; margin-bottom: 6px;
+    }
+    .sc-200 { background: #d1fae5; color: #065f46; }
+    .sc-400 { background: #fef3c7; color: #92400e; }
+    .sc-401 { background: #fee2e2; color: #991b1b; }
+    .sc-403 { background: #fee2e2; color: #991b1b; }
+    .sc-404 { background: #e0e7ff; color: #3730a3; }
+    .sc-422 { background: #fef3c7; color: #92400e; }
+    .sc-500 { background: #fee2e2; color: #7f1d1d; }
+    .sc-503 { background: #fce7f3; color: #831843; }
+
+    .scenario-card .sc-title { font-size: 0.88rem; font-weight: 600; color: #1a1a2e; }
+    .scenario-card .sc-desc  { font-size: 0.78rem; color: #888; margin-top: 3px; }
+
+    .sim-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+    .delay-row { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: #666; }
+    .delay-row input[type="number"] {
+      width: 70px; padding: 6px 8px;
+      border: 1px solid #d1d5db; border-radius: 6px; font-size: 0.85rem;
+    }
+
+    .info-bar {
+      background: #f0f4ff; border-left: 3px solid #4f6ef7;
+      border-radius: 4px; padding: 10px 14px;
+      font-size: 0.82rem; color: #3730a3; margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>REST API JSON 통신 샘플</h1>
+
+  <!-- 탭 네비게이션 -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('free')">자유 요청</button>
+    <button class="tab-btn"        onclick="switchTab('sim')">에러 시뮬레이션 (로컬 서버)</button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       탭 1 : 자유 요청
+  ══════════════════════════════════════════════════════════ -->
+  <div id="tab-free" class="tab-panel active">
+
+    <div class="card">
+      <h2>요청 설정</h2>
+
+      <div class="field-group">
+        <label class="field-label">URL</label>
+        <div class="url-row">
+          <select id="method">
+            <option value="GET">GET</option>
+            <option value="POST">POST</option>
+            <option value="PUT">PUT</option>
+            <option value="DELETE">DELETE</option>
+            <option value="PATCH">PATCH</option>
+          </select>
+          <input type="text" id="urlInput" value="https://jsonplaceholder.typicode.com/posts/1" placeholder="https://..." />
+        </div>
+        <div class="sample-urls">
+          <span class="sample-tag" data-url="https://jsonplaceholder.typicode.com/posts/1"  data-method="GET">GET /posts/1</span>
+          <span class="sample-tag" data-url="https://jsonplaceholder.typicode.com/posts"     data-method="GET">GET /posts</span>
+          <span class="sample-tag" data-url="https://jsonplaceholder.typicode.com/posts"     data-method="POST">POST /posts</span>
+          <span class="sample-tag" data-url="https://jsonplaceholder.typicode.com/posts/1"  data-method="PUT">PUT /posts/1</span>
+          <span class="sample-tag" data-url="https://jsonplaceholder.typicode.com/posts/1"  data-method="DELETE">DELETE /posts/1</span>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Headers</label>
+        <div class="header-list" id="headerList">
+          <div class="header-row">
+            <input type="text" placeholder="Key"   value="Content-Type" />
+            <input type="text" placeholder="Value" value="application/json" />
+            <button class="btn-icon" onclick="removeHeader(this)">✕</button>
+          </div>
+        </div>
+        <button class="btn-add-header" onclick="addHeader()">+ 헤더 추가</button>
+      </div>
+
+      <div class="field-group" id="bodySection" style="display:none;">
+        <label class="field-label">Request Body (JSON)</label>
+        <textarea id="requestBody" rows="5" placeholder='{"key": "value"}'>{
+  "title": "REST API 테스트",
+  "body": "JSON 통신 샘플",
+  "userId": 1
+}</textarea>
+      </div>
+
+      <div class="actions">
+        <button class="btn-send" id="btnSend" onclick="sendRequest()">전송</button>
+        <div class="spinner" id="spinner"></div>
+        <span id="sendStatus" style="font-size:0.82rem;color:#888;"></span>
+      </div>
+    </div>
+
+    <!-- 응답 -->
+    <div class="card">
+      <h2>응답 결과</h2>
+      <div class="response-meta">
+        <span class="status-badge" id="statusBadge"></span>
+        <span class="response-time" id="responseTime"></span>
+      </div>
+      <div class="response-body">
+        <pre class="response-pre" id="responseOutput">요청을 전송하면 결과가 여기에 표시됩니다.</pre>
+        <button class="btn-copy" onclick="copyResponse('responseOutput')">복사</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       탭 2 : 에러 시뮬레이션 (로컬 Tomcat)
+  ══════════════════════════════════════════════════════════ -->
+  <div id="tab-sim" class="tab-panel">
+
+    <div class="info-bar">
+      로컬 Tomcat 서버(<strong>http://localhost:9091</strong>)의 JSP API를 호출합니다.
+      서버가 실행 중이어야 합니다 — <code>tools/start_tomcat.bat</code>
+    </div>
+
+    <!-- 시나리오 선택 -->
+    <div class="card">
+      <h2>시나리오 선택</h2>
+      <div class="scenario-grid" id="scenarioGrid">
+
+        <div class="scenario-card active" data-scenario="success" onclick="selectScenario(this)">
+          <span class="sc-badge sc-200">200</span>
+          <div class="sc-title">성공</div>
+          <div class="sc-desc">정상 JSON 데이터 반환</div>
+        </div>
+
+        <div class="scenario-card" data-scenario="bad_request" onclick="selectScenario(this)">
+          <span class="sc-badge sc-400">400</span>
+          <div class="sc-title">Bad Request</div>
+          <div class="sc-desc">필수 파라미터 누락</div>
+        </div>
+
+        <div class="scenario-card" data-scenario="unauthorized" onclick="selectScenario(this)">
+          <span class="sc-badge sc-401">401</span>
+          <div class="sc-title">Unauthorized</div>
+          <div class="sc-desc">인증 토큰 없음/만료</div>
+        </div>
+
+        <div class="scenario-card" data-scenario="forbidden" onclick="selectScenario(this)">
+          <span class="sc-badge sc-403">403</span>
+          <div class="sc-title">Forbidden</div>
+          <div class="sc-desc">권한 부족</div>
+        </div>
+
+        <div class="scenario-card" data-scenario="not_found" onclick="selectScenario(this)">
+          <span class="sc-badge sc-404">404</span>
+          <div class="sc-title">Not Found</div>
+          <div class="sc-desc">리소스 없음</div>
+        </div>
+
+        <div class="scenario-card" data-scenario="validation" onclick="selectScenario(this)">
+          <span class="sc-badge sc-422">422</span>
+          <div class="sc-title">Validation Error</div>
+          <div class="sc-desc">입력값 유효성 오류</div>
+        </div>
+
+        <div class="scenario-card" data-scenario="server_error" onclick="selectScenario(this)">
+          <span class="sc-badge sc-500">500</span>
+          <div class="sc-title">Server Error</div>
+          <div class="sc-desc">서버 내부 오류</div>
+        </div>
+
+        <div class="scenario-card" data-scenario="service_unavailable" onclick="selectScenario(this)">
+          <span class="sc-badge sc-503">503</span>
+          <div class="sc-title">Service Unavailable</div>
+          <div class="sc-desc">DB/서비스 연결 실패</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 옵션 + 전송 -->
+    <div class="card">
+      <h2>옵션</h2>
+      <div class="sim-actions">
+        <button class="btn-send" onclick="sendSimRequest()">시나리오 실행</button>
+        <div class="spinner" id="simSpinner"></div>
+        <div class="delay-row">
+          <label>응답 지연</label>
+          <input type="number" id="delayInput" value="0" min="0" max="5000" step="100" />
+          <span>ms</span>
+        </div>
+        <span id="simStatus" style="font-size:0.82rem;color:#888;"></span>
+      </div>
+    </div>
+
+    <!-- 응답 -->
+    <div class="card">
+      <h2>응답 결과</h2>
+      <div class="response-meta">
+        <span class="status-badge" id="simStatusBadge"></span>
+        <span class="response-time" id="simResponseTime"></span>
+      </div>
+      <div class="response-body">
+        <pre class="response-pre" id="simOutput">시나리오를 선택하고 실행하면 결과가 여기에 표시됩니다.</pre>
+        <button class="btn-copy" onclick="copyResponse('simOutput')">복사</button>
+      </div>
+    </div>
+
+  </div><!-- /tab-sim -->
+</div><!-- /container -->
+
+<script>
+  const BASE_URL = 'http://localhost:9091/api/json_api.jsp';
+  let currentScenario = 'success';
+
+  // ─── 탭 전환 ──────────────────────────────────────────────────────────────
+  function switchTab(name) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  // ─── 시나리오 선택 ────────────────────────────────────────────────────────
+  function selectScenario(el) {
+    document.querySelectorAll('.scenario-card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    currentScenario = el.dataset.scenario;
+  }
+
+  // ─── 시나리오 실행 ────────────────────────────────────────────────────────
+  async function sendSimRequest() {
+    const delay = document.getElementById('delayInput').value || 0;
+    const url   = `${BASE_URL}?scenario=${currentScenario}&delay=${delay}`;
+
+    setSimLoading(true);
+    clearSimResponse();
+
+    const start = performance.now();
+
+    try {
+      const res     = await fetch(url, { method: 'GET' });
+      const elapsed = Math.round(performance.now() - start);
+      const data    = await res.json();
+
+      if (data.success) {
+        onSimSuccess(data, res.status, elapsed);
+      } else {
+        onSimError(data, res.status, elapsed);
+      }
+    } catch (err) {
+      const elapsed = Math.round(performance.now() - start);
+      showSimRaw({
+        type: '네트워크 오류',
+        message: err.message,
+        detail: 'Tomcat 서버가 실행 중인지 확인하세요. (tools/start_tomcat.bat)',
+      }, elapsed, true);
+    } finally {
+      setSimLoading(false);
+    }
+  }
+
+  // ── 성공 이벤트 ─────────────────────────────────────────────────────────
+  function onSimSuccess(data, status, elapsed) {
+    const badge = document.getElementById('simStatusBadge');
+    badge.className   = 'status-badge success';
+    badge.textContent = `✓ ${status} OK`;
+    document.getElementById('simResponseTime').textContent = `${elapsed} ms`;
+
+    const output = document.getElementById('simOutput');
+    output.className   = 'response-pre';
+    output.textContent = JSON.stringify(data, null, 2);
+  }
+
+  // ── 에러 이벤트 ─────────────────────────────────────────────────────────
+  function onSimError(data, status, elapsed) {
+    const badge = document.getElementById('simStatusBadge');
+    badge.className   = 'status-badge error';
+    badge.textContent = `✕ ${status} ${data.errorCode || ''}`;
+    document.getElementById('simResponseTime').textContent = `${elapsed} ms`;
+
+    const output = document.getElementById('simOutput');
+    output.className = 'response-pre is-error';
+
+    const lines = [
+      `[에러 발생] ${data.errorMessage || ''}`,
+      `─────────────────────────────────────`,
+      `errorCode    : ${data.errorCode || '-'}`,
+      `detail       : ${data.detail    || '-'}`,
+    ];
+
+    if (data.requiredRole) lines.push(`requiredRole : ${data.requiredRole}`);
+    if (data.currentRole)  lines.push(`currentRole  : ${data.currentRole}`);
+    if (data.retryAfter)   lines.push(`retryAfter   : ${data.retryAfter}s`);
+    if (data.traceId)      lines.push(`traceId      : ${data.traceId}`);
+    if (data.fields) {
+      lines.push(`fields       :`);
+      data.fields.forEach(f => lines.push(`  - ${f.field}: ${f.message}${f.value !== undefined ? ' (입력값: ' + f.value + ')' : ''}`));
+    }
+
+    lines.push(`─────────────────────────────────────`);
+    lines.push(`timestamp    : ${data.timestamp || '-'}`);
+    lines.push(`path         : ${data.path      || '-'}`);
+    lines.push(``);
+    lines.push(`── 원본 JSON ──`);
+    lines.push(JSON.stringify(data, null, 2));
+
+    output.textContent = lines.join('\n');
+  }
+
+  function showSimRaw(err, elapsed, isNet) {
+    const badge = document.getElementById('simStatusBadge');
+    badge.className   = 'status-badge error';
+    badge.textContent = `✕ ${err.type}`;
+    if (elapsed) document.getElementById('simResponseTime').textContent = `${elapsed} ms`;
+    const output = document.getElementById('simOutput');
+    output.className = 'response-pre is-error';
+    output.textContent = `[${err.type}]\n${err.message}\n\n${err.detail || ''}`;
+  }
+
+  // ─── 자유 요청 탭 ─────────────────────────────────────────────────────────
+  document.querySelectorAll('.sample-tag').forEach(tag => {
+    tag.addEventListener('click', () => {
+      document.getElementById('urlInput').value  = tag.dataset.url;
+      document.getElementById('method').value    = tag.dataset.method;
+      onMethodChange();
+    });
+  });
+
+  document.getElementById('method').addEventListener('change', onMethodChange);
+
+  function onMethodChange() {
+    const m = document.getElementById('method').value;
+    document.getElementById('bodySection').style.display =
+      ['POST', 'PUT', 'PATCH'].includes(m) ? 'block' : 'none';
+  }
+
+  function addHeader() {
+    const list = document.getElementById('headerList');
+    const row  = document.createElement('div');
+    row.className = 'header-row';
+    row.innerHTML = `
+      <input type="text" placeholder="Key" />
+      <input type="text" placeholder="Value" />
+      <button class="btn-icon" onclick="removeHeader(this)">✕</button>
+    `;
+    list.appendChild(row);
+  }
+
+  function removeHeader(btn) { btn.closest('.header-row').remove(); }
+
+  function getHeaders() {
+    const headers = {};
+    document.querySelectorAll('#headerList .header-row').forEach(row => {
+      const inputs = row.querySelectorAll('input');
+      const k = inputs[0].value.trim();
+      const v = inputs[1].value.trim();
+      if (k) headers[k] = v;
+    });
+    return headers;
+  }
+
+  async function sendRequest() {
+    const url    = document.getElementById('urlInput').value.trim();
+    const method = document.getElementById('method').value;
+    if (!url) { alert('URL을 입력해주세요.'); return; }
+
+    setFreeLoading(true);
+    clearFreeResponse();
+
+    const options = { method, headers: getHeaders() };
+    if (['POST', 'PUT', 'PATCH'].includes(method)) {
+      options.body = document.getElementById('requestBody').value;
+    }
+
+    const start = performance.now();
+
+    try {
+      const res     = await fetch(url, options);
+      const elapsed = Math.round(performance.now() - start);
+      const ct      = res.headers.get('content-type') || '';
+      const data    = ct.includes('application/json') ? await res.json() : await res.text();
+
+      if (res.ok) {
+        showFreeSuccess(data, res.status, elapsed);
+      } else {
+        showFreeError({ type: 'HTTP 오류', status: res.status, statusText: res.statusText, body: data }, elapsed);
+      }
+    } catch (err) {
+      const elapsed = Math.round(performance.now() - start);
+      showFreeError({ type: '네트워크 오류', message: err.message, detail: 'CORS, 네트워크 연결, URL을 확인하세요.' }, elapsed);
+    } finally {
+      setFreeLoading(false);
+    }
+  }
+
+  function showFreeSuccess(data, status, elapsed) {
+    const badge = document.getElementById('statusBadge');
+    badge.className   = 'status-badge success';
+    badge.textContent = `✓ ${status} OK`;
+    document.getElementById('responseTime').textContent = `${elapsed} ms`;
+    const out = document.getElementById('responseOutput');
+    out.className   = 'response-pre';
+    out.textContent = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
+  }
+
+  function showFreeError(err, elapsed) {
+    const badge = document.getElementById('statusBadge');
+    badge.className   = 'status-badge error';
+    badge.textContent = `✕ ${err.type}${err.status ? ' ' + err.status : ''}`;
+    document.getElementById('responseTime').textContent = `${elapsed} ms`;
+    const out = document.getElementById('responseOutput');
+    out.className = 'response-pre is-error';
+    const lines = [`[에러 발생] ${err.type}`];
+    if (err.status)  lines.push(`Status  : ${err.status} ${err.statusText || ''}`);
+    if (err.message) lines.push(`Message : ${err.message}`);
+    if (err.detail)  lines.push(`Detail  : ${err.detail}`);
+    if (err.body)    lines.push(`Response:\n${typeof err.body === 'string' ? err.body : JSON.stringify(err.body, null, 2)}`);
+    out.textContent = lines.join('\n');
+  }
+
+  // ─── 유틸 ────────────────────────────────────────────────────────────────
+  function setFreeLoading(f) {
+    document.getElementById('btnSend').disabled           = f;
+    document.getElementById('spinner').style.display      = f ? 'block' : 'none';
+    document.getElementById('sendStatus').textContent     = f ? '요청 중...' : '';
+  }
+
+  function setSimLoading(f) {
+    document.getElementById('simSpinner').style.display   = f ? 'block' : 'none';
+    document.getElementById('simStatus').textContent      = f ? '요청 중...' : '';
+  }
+
+  function clearFreeResponse() {
+    const b = document.getElementById('statusBadge');
+    b.className = 'status-badge'; b.textContent = '';
+    document.getElementById('responseTime').textContent   = '';
+    const o = document.getElementById('responseOutput');
+    o.className = 'response-pre'; o.textContent = '';
+  }
+
+  function clearSimResponse() {
+    const b = document.getElementById('simStatusBadge');
+    b.className = 'status-badge'; b.textContent = '';
+    document.getElementById('simResponseTime').textContent = '';
+    const o = document.getElementById('simOutput');
+    o.className = 'response-pre'; o.textContent = '';
+  }
+
+  function copyResponse(id) {
+    const text = document.getElementById(id).textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const btns = document.querySelectorAll('.btn-copy');
+      btns.forEach(b => { if (b.getAttribute('onclick').includes(id)) b.textContent = '복사됨!'; });
+      setTimeout(() => btns.forEach(b => b.textContent = '복사'), 1500);
+    });
+  }
+
+  onMethodChange();
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow Rotation Effect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 50px;
+        }
+
+        /* 체크박스는 시각적으로 숨김 */
+        .expand-toggle {
+            display: none; 
+        }
+
+        /* 화살표를 감싸는 영역 (클릭 가능한 영역) */
+        .expand-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background-color 0.2s ease;
+        }
+
+        .expand-label:hover {
+            background-color: #f4f4f4;
+        }
+
+        /* 화살표 아이콘: 부드러운 회전을 위한 핵심 CSS */
+        .arrow-icon {
+            width: 16px;
+            height: 16px;
+            fill: #161616;
+            /* transition 속성을 사용하여 transform의 변화를 0.2초 동안 부드럽게 애니메이션 처리 */
+            transition: transform 0.2s ease-in-out; 
+        }
+
+        /* 체크박스가 체크된 상태(펼쳐진 상태)일 때 화살표 아이콘을 180도 회전하여 위를 향하게 함 */
+        .expand-toggle:checked + .expand-label .arrow-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+
+    <h3>Datatable Arrow Rotation Demo (순수 HTML/CSS)</h3>
+    <p>왼쪽의 화살표를 클릭하여 부드러운 회전 애니메이션을 확인하세요.</p>
+    
+    <div style="display: flex; align-items: center; border: 1px solid #e0e0e0; padding: 10px; width: 400px;">
+        <!-- 오직 HTML과 CSS로만 클릭 상태를 유지하기 위해 체크박스 해크(Checkbox Hack) 사용 -->
+        <input type="checkbox" id="expand-row-1" class="expand-toggle">
+        <label for="expand-row-1" class="expand-label">
+            <!-- SVG 화살표 (아래 방향) -->
+            <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"></path>
+            </svg>
+        </label>
+        <span style="padding-left: 10px;">데이터 테이블 행 (클릭 시 펼쳐짐)</span>
+    </div>
+
+</body>
+</html>

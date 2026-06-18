@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkbox - CSS Mask 방식</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f6f6f7;
+            padding: 40px;
+            color: #303030;
+        }
+        h2 { margin-bottom: 8px; font-size: 20px; }
+        p.desc { color: #6d7175; font-size: 13px; margin-bottom: 24px; }
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.07);
+            max-width: 480px;
+        }
+        h3 { margin: 28px 0 12px; font-size: 13px; color: #6d7175; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* ============================================
+           CSS Mask 방식 체크박스
+           ============================================
+           
+           원리: 
+           - 체크 아이콘을 SVG가 아닌 CSS의 mask-image 속성으로 표현
+           - ::after 가상 요소에 배경색(흰색)을 깔고,
+             mask-image로 체크 모양 마스크를 씌워서 
+             배경색이 체크 모양으로만 보이게 함
+           - 장점: HTML에 SVG 태그가 전혀 필요 없어 마크업이 깔끔
+        */
+
+        .polaris-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 4px 0;
+            cursor: pointer;
+        }
+        .polaris-checkbox + .polaris-checkbox { margin-top: 12px; }
+
+        /* 네이티브 체크박스 숨김 */
+        .polaris-checkbox input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* 커스텀 체크박스 외곽 */
+        .checkmark {
+            position: relative;
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            border: 2px solid #8c9196;
+            border-radius: 4px;
+            background-color: #fff;
+            margin-top: 2px;
+            transition: background-color 0.15s ease, border-color 0.15s ease;
+        }
+
+        /* 
+           핵심: ::after 가상 요소 + mask-image 
+           체크 아이콘의 SVG 경로를 mask로 사용합니다.
+        */
+        .checkmark::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            
+            /* 마스크 설정 - 체크 아이콘 모양 (Data URI SVG) */
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z'/%3E%3C/svg%3E");
+            -webkit-mask-size: 12px 12px;
+            mask-size: 12px 12px;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-position: center;
+            
+            /* 마스크를 통해 보이는 배경색 (흰색 체크 아이콘) */
+            background-color: #fff;
+            
+            /* 기본 상태에서는 보이지 않음 */
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 0.15s ease, transform 0.15s ease;
+        }
+
+        /* 체크됨 상태 */
+        .polaris-checkbox input:checked + .checkmark {
+            background-color: #2c6ecb;
+            border-color: #2c6ecb;
+        }
+        .polaris-checkbox input:checked + .checkmark::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* 호버 */
+        .polaris-checkbox:hover .checkmark {
+            border-color: #2c6ecb;
+        }
+        .polaris-checkbox:hover input:checked + .checkmark {
+            background-color: #1f5199;
+            border-color: #1f5199;
+        }
+
+        /* 포커스 */
+        .polaris-checkbox input:focus-visible + .checkmark {
+            box-shadow: 0 0 0 2px #fff, 0 0 0 4px #2c6ecb;
+        }
+
+        /* 불확정(Indeterminate) 상태 - 마이너스(-) 모양 마스크 */
+        .polaris-checkbox input.indeterminate + .checkmark {
+            background-color: #2c6ecb;
+            border-color: #2c6ecb;
+        }
+        .polaris-checkbox input.indeterminate + .checkmark::after {
+            /* 마이너스(-) 모양의 SVG 마스크로 교체 */
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 7h10v2H3z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 7h10v2H3z'/%3E%3C/svg%3E");
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* 비활성화 */
+        .polaris-checkbox.disabled { cursor: not-allowed; opacity: 0.6; }
+        .polaris-checkbox.disabled .checkmark { background-color: #f1f1f1; border-color: #c9cccf; }
+
+        /* 에러 */
+        .polaris-checkbox.error .checkmark { border-color: #d72c0d; }
+        .error-message { font-size: 13px; color: #d72c0d; margin-top: 4px; }
+
+        /* 라벨 */
+        .checkbox-label-area { display: flex; flex-direction: column; }
+        .checkbox-label { font-size: 14px; color: #303030; line-height: 20px; }
+        .checkbox-details { font-size: 13px; color: #6d7175; margin-top: 2px; }
+        .divider { border: none; border-top: 1px solid #e1e3e5; margin: 12px 0; }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            background: #e3f1df;
+            color: #108043;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>CSS Mask 방식 <span class="badge">mask-image</span></h2>
+    <p class="desc">
+        HTML에 SVG 태그 없이, CSS의 <code>mask-image</code> 속성만으로 체크 아이콘을 표현합니다.<br>
+        <code>::after</code> 가상 요소에 흰색 배경을 깔고, 체크(✓) 모양의 SVG를 마스크로 씌웁니다.
+    </p>
+
+    <h3>기본 / 체크됨</h3>
+    <div class="card">
+        <label class="polaris-checkbox">
+            <input type="checkbox">
+            <span class="checkmark"></span>
+            <span class="checkbox-label-area">
+                <span class="checkbox-label">확인 단계 필요</span>
+                <span class="checkbox-details">진행하기 전에 모든 기준이 충족되었는지 확인합니다</span>
+            </span>
+        </label>
+        <label class="polaris-checkbox">
+            <input type="checkbox" checked>
+            <span class="checkmark"></span>
+            <span class="checkbox-label-area">
+                <span class="checkbox-label">이미 체크된 항목 (checked)</span>
+            </span>
+        </label>
+    </div>
+
+    <h3>불확정 상태 (Indeterminate)</h3>
+    <div class="card">
+        <label class="polaris-checkbox">
+            <input type="checkbox" id="selectAll-mask">
+            <span class="checkmark"></span>
+            <span class="checkbox-label-area"><span class="checkbox-label">모두 선택</span></span>
+        </label>
+        <hr class="divider">
+        <label class="polaris-checkbox"><input type="checkbox" class="child-mask"><span class="checkmark"></span><span class="checkbox-label-area"><span class="checkbox-label">항목 1</span></span></label>
+        <label class="polaris-checkbox"><input type="checkbox" class="child-mask"><span class="checkmark"></span><span class="checkbox-label-area"><span class="checkbox-label">항목 2</span></span></label>
+        <label class="polaris-checkbox"><input type="checkbox" class="child-mask"><span class="checkmark"></span><span class="checkbox-label-area"><span class="checkbox-label">항목 3</span></span></label>
+    </div>
+
+    <h3>에러 / 비활성화</h3>
+    <div class="card">
+        <label class="polaris-checkbox error">
+            <input type="checkbox">
+            <span class="checkmark"></span>
+            <span class="checkbox-label-area">
+                <span class="checkbox-label">이용약관에 동의합니다</span>
+                <span class="error-message">계속하려면 약관에 동의해야 합니다</span>
+            </span>
+        </label>
+        <label class="polaris-checkbox disabled">
+            <input type="checkbox" disabled>
+            <span class="checkmark"></span>
+            <span class="checkbox-label-area">
+                <span class="checkbox-label">고급 설정 (비활성화)</span>
+            </span>
+        </label>
+    </div>
+
+    <script>
+        const selectAll = document.getElementById('selectAll-mask');
+        const children = document.querySelectorAll('.child-mask');
+        function update() {
+            const total = children.length;
+            const checked = document.querySelectorAll('.child-mask:checked').length;
+            if (checked === 0) { selectAll.checked = false; selectAll.classList.remove('indeterminate'); }
+            else if (checked === total) { selectAll.checked = true; selectAll.classList.remove('indeterminate'); }
+            else { selectAll.checked = false; selectAll.classList.add('indeterminate'); }
+        }
+        selectAll.addEventListener('change', () => { selectAll.classList.remove('indeterminate'); children.forEach(c => c.checked = selectAll.checked); });
+        children.forEach(c => c.addEventListener('change', update));
+    </script>
+</body>
+</html>

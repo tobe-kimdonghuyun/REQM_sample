@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio - CSS Mask 방식</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f6f6f7; padding: 40px; color: #303030;
+        }
+        h2 { margin-bottom: 8px; font-size: 20px; }
+        p.desc { color: #6d7175; font-size: 13px; margin-bottom: 24px; }
+        h3 { margin: 28px 0 12px; font-size: 13px; color: #6d7175; text-transform: uppercase; letter-spacing: 0.5px; }
+        .card {
+            background: #fff; border-radius: 12px; padding: 20px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.07);
+            max-width: 480px;
+        }
+        .badge {
+            display: inline-block; padding: 2px 8px; background: #e3f1df; color: #108043;
+            border-radius: 10px; font-size: 11px; font-weight: 600; margin-left: 6px;
+        }
+
+        /* ============================================
+           CSS Mask 방식 라디오 버튼
+           ============================================
+           원리:
+           - ::after 가상 요소에 파란색 배경(#2c6ecb)을 깔고,
+             원형 SVG를 mask-image로 씌움
+           - mask가 원형이므로 배경색이 동그라미 모양으로만 보임
+           - HTML에 SVG 태그가 전혀 없어 마크업이 깔끔
+        */
+
+        .polaris-radio {
+            display: flex; align-items: flex-start; gap: 8px;
+            padding: 4px 0; cursor: pointer;
+        }
+        .polaris-radio + .polaris-radio { margin-top: 12px; }
+
+        .polaris-radio input[type="radio"] {
+            position: absolute; opacity: 0; width: 0; height: 0;
+        }
+
+        .radiomark {
+            position: relative;
+            display: inline-block;
+            width: 18px; height: 18px; min-width: 18px;
+            border: 2px solid #8c9196; border-radius: 50%;
+            background-color: #fff; margin-top: 2px;
+            transition: border-color 0.15s ease;
+        }
+
+        /* 
+           핵심: ::after + mask-image로 내부 원 표현
+           원형 SVG를 마스크로 사용하여 배경색이 동그라미 형태로만 보이게 합니다.
+        */
+        .radiomark::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+
+            /* 원형 마스크 (Data URI SVG) */
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 10' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='5' cy='5' r='5'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 10' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='5' cy='5' r='5'/%3E%3C/svg%3E");
+            -webkit-mask-size: 10px 10px;
+            mask-size: 10px 10px;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-position: center;
+
+            /* 마스크를 통해 보이는 배경색 */
+            background-color: #2c6ecb;
+
+            /* 기본 숨김 */
+            opacity: 0; transform: scale(0);
+            transition: opacity 0.15s ease, transform 0.15s ease;
+        }
+
+        /* 선택됨 */
+        .polaris-radio input:checked + .radiomark { border-color: #2c6ecb; }
+        .polaris-radio input:checked + .radiomark::after {
+            opacity: 1; transform: scale(1);
+        }
+
+        /* 호버 */
+        .polaris-radio:hover .radiomark { border-color: #2c6ecb; }
+        .polaris-radio:hover input:checked + .radiomark { border-color: #1f5199; }
+        .polaris-radio:hover input:checked + .radiomark::after { background-color: #1f5199; }
+
+        /* 포커스 */
+        .polaris-radio input:focus-visible + .radiomark {
+            box-shadow: 0 0 0 2px #fff, 0 0 0 4px #2c6ecb;
+        }
+
+        /* 비활성화 */
+        .polaris-radio.disabled { cursor: not-allowed; opacity: 0.6; }
+        .polaris-radio.disabled .radiomark { background-color: #f1f1f1; border-color: #c9cccf; }
+        .polaris-radio.disabled:hover .radiomark { border-color: #c9cccf; }
+
+        /* 에러 */
+        .polaris-radio.error .radiomark { border-color: #d72c0d; }
+        .error-message { font-size: 13px; color: #d72c0d; margin-top: 4px; }
+
+        /* 라벨 */
+        .radio-label-area { display: flex; flex-direction: column; }
+        .radio-label { font-size: 14px; color: #303030; line-height: 20px; }
+        .radio-details { font-size: 13px; color: #6d7175; margin-top: 2px; }
+    </style>
+</head>
+<body>
+
+    <h2>CSS Mask 방식 라디오 <span class="badge">mask-image</span></h2>
+    <p class="desc">
+        HTML에 SVG 태그 없이, <code>::after</code> 가상 요소의 <code>mask-image</code>로 원형 아이콘을 표현합니다.<br>
+        배경색(<code>#2c6ecb</code>)이 원형 마스크를 통해서만 보이는 원리입니다.
+    </p>
+
+    <h3>기본 선택</h3>
+    <div class="card">
+        <label class="polaris-radio">
+            <input type="radio" name="plan-mask" checked>
+            <span class="radiomark"></span>
+            <span class="radio-label-area">
+                <span class="radio-label">기본 플랜</span>
+                <span class="radio-details">월 29,000원 - 소규모 비즈니스에 적합</span>
+            </span>
+        </label>
+        <label class="polaris-radio">
+            <input type="radio" name="plan-mask">
+            <span class="radiomark"></span>
+            <span class="radio-label-area">
+                <span class="radio-label">프로 플랜</span>
+                <span class="radio-details">월 79,000원 - 성장하는 비즈니스에 적합</span>
+            </span>
+        </label>
+        <label class="polaris-radio">
+            <input type="radio" name="plan-mask">
+            <span class="radiomark"></span>
+            <span class="radio-label-area">
+                <span class="radio-label">엔터프라이즈 플랜</span>
+                <span class="radio-details">맞춤형 가격 - 대규모 비즈니스에 적합</span>
+            </span>
+        </label>
+    </div>
+
+    <h3>에러 / 비활성화</h3>
+    <div class="card">
+        <label class="polaris-radio error">
+            <input type="radio" name="terms-mask">
+            <span class="radiomark"></span>
+            <span class="radio-label-area">
+                <span class="radio-label">동의합니다</span>
+                <span class="error-message">항목을 선택해야 합니다</span>
+            </span>
+        </label>
+        <label class="polaris-radio disabled">
+            <input type="radio" name="disabled-mask" disabled>
+            <span class="radiomark"></span>
+            <span class="radio-label-area">
+                <span class="radio-label">비활성화된 옵션</span>
+                <span class="radio-details">관리자에게 문의하세요</span>
+            </span>
+        </label>
+    </div>
+
+</body>
+</html>

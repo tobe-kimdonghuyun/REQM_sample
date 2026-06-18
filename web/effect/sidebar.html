@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toss Style Layout with Narrow Sidebar</title>
+    <!-- CoreUI CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.0.0/dist/css/coreui.min.css" rel="stylesheet">
+    <!-- CoreUI Icons -->
+    <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            background-color: #f2f4f6;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .wrapper {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        /* 왼쪽 사이드바: 오버레이 호버 구현 */
+        .sidebar-narrow {
+            width: 64px;
+            position: absolute; /* 중앙 영역을 밀지 않기 위해 절대 위치 설정 */
+            left: 0;
+            top: 0;
+            height: 100%;
+            z-index: 1050; /* 최상단 레이어 */
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        /* 호버 시 확장 (중앙 영역 크기 유지) */
+        .sidebar-narrow:hover {
+            width: 256px;
+            box-shadow: 10px 0 25px rgba(0,0,0,0.1);
+        }
+
+        /* 메뉴명 텍스트 제어 (호버 전에는 숨김) */
+        .sidebar-narrow .nav-link span, 
+        .sidebar-narrow .sidebar-brand {
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.2s;
+            margin-left: 10px;
+        }
+        
+        .sidebar-narrow:hover .nav-link span,
+        .sidebar-narrow:hover .sidebar-brand {
+            opacity: 1;
+        }
+
+        /* 중앙 및 오른쪽 영역 컨테이너 */
+        .main-wrapper {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            margin-left: 64px; /* 사이드바 기본 너비 */
+        }
+
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            background: #f2f4f6; /* 토스 특유의 은은한 배경색 */
+            padding: 40px;
+            transition: margin-right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 오른쪽 서랍 패널 (고도화: 토스 증권 스타일) */
+        .right-drawer {
+            width: 440px; /* 조금 더 넉넉하게 */
+            background: white;
+            display: flex;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+            z-index: 50;
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.03);
+            border-left: 1px solid #f2f4f6;
+        }
+
+        /* 접혔을 때: 핸들 부분만 자연스럽게 노출 */
+        .right-drawer.collapsed {
+            transform: translateX(380px); /* 440px - 60px = 380px */
+        }
+        /* [변경] 수직 핸들 (텍스트 삭제, 아이콘 상단 배치) */
+        .drawer-handle {
+            width: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; /* 상단 정렬 */
+            padding-top: 30px; /* 상단 여백 추가 */
+            cursor: pointer;
+            background: #ffffff;
+            border-right: 1px solid #f2f4f6;
+            transition: background 0.2s;
+        }
+        .drawer-handle:hover {
+            background: #f9fafb;
+        }
+
+        .handle-icon {
+            font-size: 24px;
+            color: #3182f6;
+            transition: transform 0.3s ease;
+        }
+
+        /* 주문 패널 본체 */
+        .drawer-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            width: 380px;
+            overflow: hidden;
+        }
+
+        /* 토스 스타일 탭 (구매 / 판매 / 정정) */
+        .order-tabs {
+            display: flex;
+            padding: 20px 24px 0;
+            gap: 24px;
+            border-bottom: 1px solid #f2f4f6;
+        }
+        .order-tab {
+            padding-bottom: 12px;
+            font-size: 17px;
+            font-weight: 700;
+            color: #adb5bd;
+            cursor: pointer;
+            position: relative;
+        }
+        .order-tab.active {
+            color: #3182f6;
+        }
+        .order-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #3182f6;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .drawer-content {
+            padding: 32px 24px;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        /* 토스 입력 필드 디자인 */
+        .input-group-custom {
+            margin-bottom: 28px;
+        }
+        .input-label {
+            font-size: 14px;
+            color: #6b7684;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .field-container {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .field-input {
+            border: none;
+            background: transparent;
+            font-size: 20px;
+            font-weight: 700;
+            color: #191f28;
+            width: 100%;
+            text-align: right;
+            outline: none;
+        }
+        .field-unit {
+            font-size: 18px;
+            color: #4e5968;
+            margin-left: 8px;
+            font-weight: 600;
+        }
+
+        /* 빠른 수량 조절 버튼 */
+        .quick-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .quick-btn {
+            flex: 1;
+            background: #ffffff;
+            border: 1px solid #e5e8eb;
+            border-radius: 8px;
+            padding: 8px;
+            font-size: 13px;
+            color: #4e5968;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .summary-box {
+            margin-top: auto;
+            border-top: 1px solid #f2f4f6;
+            padding: 24px;
+            background: #ffffff;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        .summary-label { color: #4e5968; font-size: 15px; }
+        .summary-value { color: #191f28; font-size: 18px; font-weight: 700; }
+
+        .btn-buy-large {
+            width: 100%;
+            background: #3182f6;
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            box-shadow: 0 4px 12px rgba(49, 130, 246, 0.2);
+        }
+        .btn-buy-large:hover { opacity: 0.9; }
+
+        .toss-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.04); /* 고급스러운 부드러운 그림자 */
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        h1 { font-size: 26px; font-weight: 800; color: #191f28; margin-bottom: 24px; }
+        h2 { font-size: 18px; font-weight: 700; color: #333d4b; }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <!-- 좌측 사이드바 (오버레이 호버) -->
+    <div class="sidebar sidebar-narrow border-end">
+      <div class="sidebar-header border-bottom">
+        <div class="sidebar-brand">TOSS <span style="font-size: 0.8rem; font-weight: 400; color: #3182f6;">Invest</span></div>
+      </div>
+      <ul class="sidebar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="nav-icon cil-speedometer"></i><span>대시보드</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="nav-icon cil-chart"></i><span>내 주식</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="nav-icon cil-search"></i><span>종목 검색</span></a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="main-wrapper">
+        <main class="content-area" id="content-body" style="margin-right: 40px;">
+            <h1>삼성전자 <span style="color: #adb5bd; font-size: 16px; font-weight: 500;">005930</span></h1>
+            <div class="toss-card">
+                <h2>차트</h2>
+                <div style="height: 400px; background: #fff; border: 1px solid #f2f4f6; border-radius: 12px; display: flex; justify-content: center; align-items: center; color: #adb5bd;">
+                    주식 캔들 차트 영역
+                </div>
+            </div>
+            <div class="toss-card">
+                <h2>실시간 시세</h2>
+                <div style="display: flex; gap: 40px;">
+                    <div><span style="color: #6b7684;">현재가</span><br><b style="font-size: 22px; color: #f04452;">73,500</b></div>
+                    <div><span style="color: #6b7684;">전일대비</span><br><b style="font-size: 22px; color: #f04452;">+1,200 (1.66%)</b></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- [변경] 오른쪽 서랍: 토스 증권 테스크탑 스타일 -->
+        <aside class="right-drawer collapsed" id="right-drawer">
+            <!-- 개선된 핸들 영역 (텍스트 제거) -->
+            <div class="drawer-handle" id="drawer-handle">
+                <i class="cil-chevron-left handle-icon" id="handle-arrow"></i>
+            </div>
+            
+            <!-- 주문 패널 본체 -->
+            <div class="drawer-main">
+                <div class="order-tabs">
+                    <div class="order-tab active">구매</div>
+                    <div class="order-tab">판매</div>
+                    <div class="order-tab">정정</div>
+                </div>
+
+                <div class="drawer-content">
+                    <div class="input-group-custom">
+                        <label class="input-label">가격</label>
+                        <div class="field-container">
+                            <input type="text" class="field-input" value="73,500">
+                            <span class="field-unit">원</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group-custom">
+                        <label class="input-label">수량</label>
+                        <div class="field-container">
+                            <input type="number" class="field-input" value="1">
+                            <span class="field-unit">주</span>
+                        </div>
+                        <div class="quick-actions">
+                            <button class="quick-btn">10%</button>
+                            <button class="quick-btn">25%</button>
+                            <button class="quick-btn">50%</button>
+                            <button class="quick-btn">최대</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-box">
+                    <div class="summary-row">
+                        <span class="summary-label">총 주문금액</span>
+                        <span class="summary-value">73,500원</span>
+                    </div>
+                    <button class="btn-buy-large">구매하기</button>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.0.0/dist/js/coreui.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const handle = document.getElementById('drawer-handle');
+        const arrow = document.getElementById('handle-arrow');
+        const drawer = document.getElementById('right-drawer');
+        const contentBody = document.getElementById('content-body');
+
+        function toggleDrawer() {
+            const isCollapsed = drawer.classList.toggle('collapsed');
+            
+            if (isCollapsed) {
+                contentBody.style.marginRight = '60px';
+                arrow.style.transform = 'rotate(0deg)';
+            } else {
+                contentBody.style.marginRight = '440px';
+                arrow.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // 오타 수정: handle에 클릭 이벤트를 등록합니다.
+        handle.addEventListener('click', toggleDrawer);
+    });
+</script>
+
+</body>
+</html>

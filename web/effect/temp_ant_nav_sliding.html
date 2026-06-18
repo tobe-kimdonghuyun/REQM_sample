@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ant Design Nav Sliding Line</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 50px;
+            background-color: #f5f5f5;
+        }
+
+        /* 네비게이션 컨테이너 (relative 위치 적용) */
+        .ant-nav-container {
+            position: relative; /* 하단 움직이는 줄(sliding-line)의 기준점 */
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border-bottom: 1px solid rgba(5, 5, 5, 0.06);
+            padding: 0 40px;
+            height: 64px;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+        }
+
+        /* 메뉴 아이템들 */
+        .ant-nav-item {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 0 20px;
+            color: rgba(0, 0, 0, 0.88);
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .ant-nav-item:hover {
+            color: #1677ff;
+        }
+
+        .ant-nav-item.active {
+            color: #1677ff;
+            font-weight: 500;
+        }
+
+        /* 
+           핵심 애니메이션을 위한 움직이는 하단 선 
+           - 메뉴 아이템 안에 넣는 것이 아니라 부모 컨테이너 아래쪽에 absolute로 띄움 
+           - 자바스크립트로 선택된 메뉴의 X좌표(left)와 너비(width)를 계산하여 이동시킴
+        */
+        .sliding-line {
+            position: absolute;
+            bottom: -1px; /* border-bottom 위를 덮도록 위치 */
+            height: 2px;
+            background-color: #1677ff;
+            
+            /* width와 left(transform) 값이 부드럽게 변하도록 트랜지션 적용 */
+            transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+                        width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+            /* 
+               flex 부모 안에서 absolute 요소의 초기 위치(static position)가 
+               어긋나지 않도록 명시적으로 left 기준점을 0으로 잡아줍니다. 
+            */
+            left: 0;
+            
+            /* 초기 상태: 보이지 않음 (크기 0) */
+            width: 0;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+
+    <h2>자연스럽게 밑줄이 따라다니는 (Sliding) 네비게이션 효과</h2>
+    <p>
+        클릭(혹은 마우스 오버) 시마다 해당 메뉴 항목의 너비와 위치를 계산하여 파란색 밑줄이 자연스럽게 스르륵 이동(`transform: translateX`)하도록 자바스크립트를 추가했습니다.
+    </p>
+    
+    <div class="ant-nav-container" id="nav-container">
+        <!-- 움직이는 하단 파란색 줄 -->
+        <div class="sliding-line" id="sliding-line"></div>
+
+        <div class="ant-nav-item active">
+            Design
+        </div>
+        
+        <div class="ant-nav-item">
+            Development
+        </div>
+        
+        <div class="ant-nav-item">
+            Components
+        </div>
+        
+        <div class="ant-nav-item" style="padding: 0 40px;"> <!-- 일부러 너비가 다른 항목 추가 -->
+            Blog Center
+        </div>
+        
+        <div class="ant-nav-item" style="color: rgba(0, 0, 0, 0.45); cursor: not-allowed;">
+            Disabled
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('nav-container');
+            const slidingLine = document.getElementById('sliding-line');
+            const navItems = document.querySelectorAll('.ant-nav-item');
+
+            // 밑줄을 특정 요소(item)의 위치로 부드럽게 이동시키는 함수
+            function moveLineTo(item) {
+                // 부모(컨테이너) 안에서의 위치(offsetLeft)
+                const leftPos = item.offsetLeft;
+                
+                // 해당 아이템에 적용된 좌우 패딩 값 계산 (getComputedStyle 사용)
+                const computedStyle = window.getComputedStyle(item);
+                const paddingLeft = parseFloat(computedStyle.paddingLeft);
+                const paddingRight = parseFloat(computedStyle.paddingRight);
+                
+                // 순수 글자(콘텐츠) 영역의 너비 = 전체 너비 - 좌측 패딩 - 우측 패딩
+                const textWidth = item.offsetWidth - paddingLeft - paddingRight;
+
+                /* 밑줄의 시작 위치를 기존 왼쪽 끝(leftPos)에서 패딩 값(paddingLeft)만큼 오른쪽으로 밀어줌 
+                   선 길이는 텍스트 너비(textWidth)만큼만 지정 */
+                slidingLine.style.width = textWidth + 'px';
+                slidingLine.style.transform = `translateX(${leftPos + paddingLeft}px)`;
+            }
+
+            // 1. 초기 로딩 시 기본적으로 active 클래스를 가진 항목 위치로 밑줄 이동
+            const initialActive = document.querySelector('.ant-nav-item.active');
+            if(initialActive) {
+                moveLineTo(initialActive);
+            }
+
+            // 2. 각 메뉴 클릭(또는 마우스 호버) 이벤트
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Disabled 요소는 클릭 무시
+                    if(this.style.cursor === 'not-allowed') return;
+
+                    // 애니메이션 실행 (줄 이동)
+                    moveLineTo(this);
+
+                    // 컬러 색상 클래스 변경 (active 이동)
+                    document.querySelectorAll('.ant-nav-item').forEach(el => el.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // 창 크기가 변경(Resize) 되면 위치가 틀어질 수 있으므로 재계산
+            window.addEventListener('resize', () => {
+                const currentActive = document.querySelector('.ant-nav-item.active');
+                if(currentActive) moveLineTo(currentActive);
+            });
+        });
+    </script>
+
+</body>
+</html>

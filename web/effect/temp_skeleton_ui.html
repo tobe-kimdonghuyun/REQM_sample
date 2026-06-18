@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skeleton UI Demo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 40px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* 
+           1. 카드의 기본 골격 (실제 데이터와 스켈레톤 모두 공유) 
+        */
+        .card {
+            background-color: #fff;
+            width: 300px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-image-area {
+            width: 100%;
+            height: 180px;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title-area {
+            height: 24px;
+            width: 80%;
+            margin-bottom: 15px;
+        }
+
+        .card-desc-line {
+            height: 14px;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+        .card-desc-line.short {
+            width: 60%;
+            margin-bottom: 0;
+        }
+
+        /* 
+           ========================================
+           2. Skeleton UI 전용 애니메이션 및 스타일 
+           ========================================
+        */
+
+        /* 스켈레톤 요소가 가진 공통 회색 배경색 및 애니메이션 */
+        .skeleton {
+            /* 연한 회색 (배경색) */
+            background-color: #e2e5e7;
+            /* 둥근 테두리 처리로 좀 더 부드럽게 */
+            border-radius: 4px;
+            
+            /* 눈부심(Shimmer) 효과를 위한 백그라운드 그라데이션 이미지를 정의 */
+            background-image: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0,
+                rgba(255, 255, 255, 0.4) 20%,   /* 중간을 밝게 */
+                rgba(255, 255, 255, 0.4) 60%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            
+            /* 애니메이션이 길게 지나가야 하므로 크기를 요소보다 크게 잡음 */
+            background-size: 200% 100%;
+            background-repeat: no-repeat;
+            
+            /* 무한 반복되는 애니메이션 실행 */
+            animation: shimmer 1.5s infinite linear;
+        }
+
+        /* 사진 영역은 각진 테두리를 없애고 카드 형태에 맞춤 */
+        .card-image-area.skeleton {
+            border-radius: 0;
+        }
+
+        /* 키프레임: 배경 이미지를 왼쪽 끝에서 오른쪽 끝으로 이동시킴 */
+        @keyframes shimmer {
+            0% {
+                background-position: -100% 0;
+            }
+            100% {
+                background-position: 100% 0;
+            }
+        }
+
+
+        /* 
+           ========================================
+           3. 실제 데이터가 로드된 후의 스타일 
+           ========================================
+        */
+        .loaded .card-image-area {
+            /* 스켈레톤 클래스가 제거되고 실제 이미지가 보이거나 배경이 들어오는 곳 */
+            background-image: url('https://picsum.photos/300/180');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .loaded .card-title-area,
+        .loaded .card-desc-line {
+            /* 텍스트의 크기에 맞춰 높이 자동 조절 */
+            height: auto; 
+            width: auto;
+            margin-bottom: 0;
+        }
+
+        .loaded h3 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .loaded p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* 컨트롤 영역 */
+        .control-panel {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 14px;
+            background-color: #1677ff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover { background-color: #4096ff; }
+    </style>
+</head>
+<body>
+
+    <div class="control-panel">
+        <button id="toggleBtn">데이터 로드 완료시키기 (Toggle)</button>
+        <p style="color: #666; font-size: 14px; margin-top: 10px;">
+            보통 서버에서 데이터를 받아오기 전까지 빈 뼈대(.skeleton)를 보여주다가, <br>
+            데이터가 도착하면 자바스크립트로 뼈대를 지우고 실제 텍스트/이미지를 주입합니다.
+        </p>
+    </div>
+
+    <!-- 1. 로딩 중인 상태 (Skeleton UI) -->
+    <div class="card" id="demo-card">
+        <!-- 썸네일 뼈대 -->
+        <div class="card-image-area skeleton"></div>
+        
+        <div class="card-content">
+            <!-- 제목 뼈대 -->
+            <div class="card-title-area skeleton"></div>
+            
+            <!-- 본문 뼈대 (두 줄) -->
+            <div class="card-desc-line skeleton"></div>
+            <div class="card-desc-line short skeleton"></div>
+        </div>
+    </div>
+
+
+    <!-- 2. 이미 데이터가 로드된 상태 (비교용) -->
+    <div class="card loaded">
+        <div class="card-image-area"></div>
+        <div class="card-content">
+            <div class="card-title-area"><h3>실제 데이터 제목</h3></div>
+            <div class="card-desc-line"><p>스켈레톤 UI가 끝나면 이렇게 실제 데이터가 들어옵니다. 깜빡임 없는 사용자 경험을 제공합니다.</p></div>
+        </div>
+    </div>
+
+
+    <script>
+        const btn = document.getElementById('toggleBtn');
+        const demoCard = document.getElementById('demo-card');
+        
+        // 버튼 클릭 시 로딩 중 <-> 완료 상태 왕복 토글 
+        btn.addEventListener('click', () => {
+            const isLoaded = demoCard.classList.contains('loaded');
+
+            if (isLoaded) {
+                // 다시 로딩(스켈레톤) 상태로 되돌리기
+                demoCard.classList.remove('loaded');
+                
+                // 안의 내용물을 비우고 스켈레톤 클래스 복구
+                demoCard.innerHTML = `
+                    <div class="card-image-area skeleton"></div>
+                    <div class="card-content">
+                        <div class="card-title-area skeleton"></div>
+                        <div class="card-desc-line skeleton"></div>
+                        <div class="card-desc-line short skeleton"></div>
+                    </div>
+                `;
+            } else {
+                // 데이터 로드 완료 상태로 변경
+                demoCard.classList.add('loaded');
+                
+                // 스켈레톤 뼈대들을 실제 텍스트 구문으로 교체
+                // (보통 서버에서 Fetch API로 받아온 데이터를 여기에 넣음)
+                demoCard.innerHTML = `
+                    <div class="card-image-area"></div>
+                    <div class="card-content">
+                        <div class="card-title-area"><h3>새롭게 불러온 제목</h3></div>
+                        <div class="card-desc-line"><p>로딩이 완료되어 실제 텍스트가 표시되었습니다. Skeleton의 회색 배경과 애니메이션은 제거됩니다.</p></div>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

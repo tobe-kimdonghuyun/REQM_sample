@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopify Polaris Checkbox (HTML/CSS Clone)</title>
+    <style>
+        /* ============================================
+           기본 리셋 및 전역 스타일
+           ============================================ */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f6f6f7;
+            padding: 40px;
+            color: #303030;
+            line-height: 1.5;
+        }
+        h2 { margin-bottom: 24px; font-size: 20px; }
+        h3 { margin: 32px 0 12px; font-size: 14px; color: #6d7175; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* 카드 형태 래퍼 (Shopify 관리자 패널처럼 보이게) */
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.07);
+            max-width: 480px;
+        }
+        .card + .card { margin-top: 16px; }
+
+        /* ============================================
+           1. Polaris Checkbox 커스텀 스타일
+           ============================================ */
+
+        /* 체크박스 한 줄을 감싸는 래퍼 */
+        .polaris-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 4px 0;
+            cursor: pointer;
+            position: relative;
+        }
+        .polaris-checkbox + .polaris-checkbox {
+            margin-top: 12px;
+        }
+
+        /* 실제 네이티브 체크박스는 숨김 */
+        .polaris-checkbox input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* 커스텀 체크 마크 박스 */
+        .checkmark {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            border: 2px solid #8c9196;
+            border-radius: 4px;
+            background-color: #fff;
+            margin-top: 2px;
+            /* 부드러운 트랜지션 */
+            transition: background-color 0.15s ease, 
+                        border-color 0.15s ease,
+                        box-shadow 0.15s ease;
+        }
+
+        /* 체크 아이콘 (SVG) - 기본 숨김 */
+        .checkmark svg {
+            width: 12px;
+            height: 12px;
+            fill: #fff;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 0.1s ease, transform 0.15s ease;
+        }
+
+        /* 
+           2. 체크된 상태 (Checked) 
+        */
+        .polaris-checkbox input:checked + .checkmark {
+            background-color: #2c6ecb;
+            border-color: #2c6ecb;
+        }
+        .polaris-checkbox input:checked + .checkmark svg {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* 
+           3. 호버 (Hover) 상태 
+        */
+        .polaris-checkbox:hover .checkmark {
+            border-color: #2c6ecb;
+        }
+        .polaris-checkbox:hover input:checked + .checkmark {
+            background-color: #1f5199;
+            border-color: #1f5199;
+        }
+
+        /* 
+           4. 포커스 (Focus) 상태 - 키보드 접근성을 위한 아웃라인 
+        */
+        .polaris-checkbox input:focus-visible + .checkmark {
+            box-shadow: 0 0 0 2px #fff, 0 0 0 4px #2c6ecb;
+        }
+
+        /* 
+           5. 비활성화 (Disabled) 상태 
+        */
+        .polaris-checkbox.disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        .polaris-checkbox.disabled .checkmark {
+            background-color: #f1f1f1;
+            border-color: #c9cccf;
+        }
+        .polaris-checkbox.disabled:hover .checkmark {
+            border-color: #c9cccf;
+        }
+
+        /* 
+           6. 에러 (Error) 상태 
+        */
+        .polaris-checkbox.error .checkmark {
+            border-color: #d72c0d;
+        }
+        .polaris-checkbox.error:hover .checkmark {
+            border-color: #b71c1c;
+        }
+
+        /* 에러 메시지 텍스트 */
+        .error-message {
+            display: block;
+            font-size: 13px;
+            color: #d72c0d;
+            margin-top: 4px;
+        }
+
+        /* 
+           7. 불확정 (Indeterminate) 상태
+        */
+        .polaris-checkbox input.indeterminate + .checkmark {
+            background-color: #2c6ecb;
+            border-color: #2c6ecb;
+        }
+        .polaris-checkbox input.indeterminate + .checkmark svg.check-icon {
+            opacity: 0; /* 체크 아이콘은 숨김 */
+        }
+        .polaris-checkbox input.indeterminate + .checkmark svg.indeterminate-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* 불확정 아이콘은 기본 숨김 */
+        .checkmark svg.indeterminate-icon {
+            opacity: 0;
+            transform: scale(0.5);
+            position: absolute;
+        }
+
+        /* 라벨 영역 */
+        .checkbox-label-area {
+            display: flex;
+            flex-direction: column;
+        }
+        .checkbox-label {
+            font-size: 14px;
+            color: #303030;
+            font-weight: 400;
+            line-height: 20px;
+        }
+        .checkbox-details {
+            font-size: 13px;
+            color: #6d7175;
+            margin-top: 2px;
+        }
+
+        /* 구분선 */
+        .divider {
+            border: none;
+            border-top: 1px solid #e1e3e5;
+            margin: 12px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Shopify Polaris Checkbox - HTML/CSS 클론</h2>
+
+    <!-- 기본 체크박스 -->
+    <h3>기본 (Default)</h3>
+    <div class="card">
+        <label class="polaris-checkbox">
+            <input type="checkbox">
+            <span class="checkmark">
+                <svg class="check-icon" viewBox="0 0 16 16"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>
+            </span>
+            <span class="checkbox-label-area">
+                <span class="checkbox-label">확인 단계 필요</span>
+                <span class="checkbox-details">진행하기 전에 모든 기준이 충족되었는지 확인합니다</span>
+            </span>
+        </label>
+    </div>
+
+    <!-- Indeterminate 상태 (Select All) -->
+    <h3>불확정 상태 (Indeterminate)</h3>
+    <div class="card">
+        <label class="polaris-checkbox" id="selectAllLabel">
+            <input type="checkbox" id="selectAll">
+            <span class="checkmark" style="position:relative;">
+                <svg class="check-icon" viewBox="0 0 16 16"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>
+                <svg class="indeterminate-icon" viewBox="0 0 16 16"><path d="M3 7h10v2H3z"/></svg>
+            </span>
+            <span class="checkbox-label-area">
+                <span class="checkbox-label">모두 선택</span>
+            </span>
+        </label>
+        <hr class="divider">
+        <label class="polaris-checkbox child-item">
+            <input type="checkbox" class="child-check">
+            <span class="checkmark">
+                <svg class="check-icon" viewBox="0 0 16 16"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>
+            </span>
+            <span class="checkbox-label-area"><span class="checkbox-label">항목 1</span></span>
+        </label>
+        <label class="polaris-checkbox child-item">
+            <input type="checkbox" class="child-check">
+            <span class="checkmark">
+                <svg class="check-icon" viewBox="0 0 16 16"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>
+            </span>
+            <span class="checkbox-label-area"><span class="checkbox-label">항목 2</span></span>
+        </label>
+        <label class="polaris-checkbox child-item">
+            <input type="checkbox" class="child-check">
+            <span class="checkmark">
+                <svg class="check-icon" viewBox="0 0 16 16"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>
+            </span>
+            <span class="checkbox-label-area"><span class="checkbox-label">항목 3</span></span>
+        </label>
+    </div>
+
+    <!-- 에러 상태 -->
+    <h3>에러 상태 (Error)</h3>
+    <div class="card">
+        <label class="polaris-checkbox error">
+            <input type="checkbox">
+            <span class="checkmark">
+                <svg class="check-icon" viewBox="0 0 16 16"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>
+            </span>
+            <span class="checkbox-label-area">
+                <span class="checkbox-label">이용약관에 동의합니다</span>
+                <span class="error-message">계속하려면 약관에 동의해야 합니다</span>
+            </span>
+        </label>
+    </div>
+
+    <!-- 도움 텍스트 -->
+    <h3>도움 텍스트 (Help Text)</h3>
+    <div class="card">
+        <label class="polaris-checkbox">
+            <input type="checkbox">
+            <span class="checkmark">
+                <svg class="check-icon" viewBox="0 0 16 16"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>
+            </span>
+            <span class="checkbox-label-area">
+                <span class="checkbox-label">주문 알림 발송</span>
+                <span class="checkbox-details">주문이 접수, 이행 또는 취소될 때 이메일을 받으실 수 있습니다</span>
+            </span>
+        </label>
+    </div>
+
+    <!-- 비활성화 상태 -->
+    <h3>비활성화 상태 (Disabled)</h3>
+    <div class="card">
+        <label class="polaris-checkbox disabled">
+            <input type="checkbox" disabled>
+            <span class="checkmark">
+                <svg class="check-icon" viewBox="0 0 16 16"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>
+            </span>
+            <span class="checkbox-label-area">
+                <span class="checkbox-label">고급 설정</span>
+                <span class="checkbox-details">고급 설정을 활성화하려면 관리자에게 문의하세요</span>
+            </span>
+        </label>
+    </div>
+
+    <!-- 설정 그룹 -->
+    <h3>설정 그룹 (Settings Group)</h3>
+    <div class="card">
+        <label class="polaris-checkbox">
+            <input type="checkbox" checked>
+            <span class="checkmark">
+                <svg class="check-icon" viewBox="0 0 16 16"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>
+            </span>
+            <span class="checkbox-label-area">
+                <span class="checkbox-label">게시된 상품만 표시</span>
+            </span>
+        </label>
+        <label class="polaris-checkbox">
+            <input type="checkbox" checked>
+            <span class="checkmark">
+                <svg class="check-icon" viewBox="0 0 16 16"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>
+            </span>
+            <span class="checkbox-label-area">
+                <span class="checkbox-label">재고 추적 활성화</span>
+                <span class="checkbox-details">재고 수준을 추적하고 재고 부족 알림을 받습니다</span>
+            </span>
+        </label>
+        <label class="polaris-checkbox">
+            <input type="checkbox">
+            <span class="checkmark">
+                <svg class="check-icon" viewBox="0 0 16 16"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>
+            </span>
+            <span class="checkbox-label-area">
+                <span class="checkbox-label">고객 데이터 보기</span>
+                <span class="checkbox-details">직원이 고객 연락처 정보 및 주문 내역에 접근할 수 있도록 허용합니다</span>
+            </span>
+        </label>
+    </div>
+
+
+    <!-- Indeterminate 상태를 위한 자바스크립트 (최소한) -->
+    <script>
+        const selectAll = document.getElementById('selectAll');
+        const childChecks = document.querySelectorAll('.child-check');
+
+        function updateSelectAll() {
+            const total = childChecks.length;
+            const checked = document.querySelectorAll('.child-check:checked').length;
+
+            if (checked === 0) {
+                selectAll.checked = false;
+                selectAll.classList.remove('indeterminate');
+            } else if (checked === total) {
+                selectAll.checked = true;
+                selectAll.classList.remove('indeterminate');
+            } else {
+                // 일부만 선택됨 → 불확정 상태
+                selectAll.checked = false;
+                selectAll.classList.add('indeterminate');
+            }
+        }
+
+        // "모두 선택" 클릭 시
+        selectAll.addEventListener('change', () => {
+            const isChecked = selectAll.checked;
+            selectAll.classList.remove('indeterminate');
+            childChecks.forEach(cb => cb.checked = isChecked);
+        });
+
+        // 개별 항목 클릭 시
+        childChecks.forEach(cb => {
+            cb.addEventListener('change', updateSelectAll);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expandable Search (Carbon Style)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 60px;
+        }
+
+        h2 { color: #161616; margin-bottom: 30px; }
+
+        /* ============================================
+           Expandable Search 컨테이너
+           ============================================ */
+        .expandable-search {
+            display: inline-flex;
+            align-items: center;
+            position: relative;
+            height: 40px;
+        }
+
+        /* 돋보기 버튼 (항상 보임) */
+        .search-toggle-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            fill: #161616;
+            flex-shrink: 0;
+            z-index: 2; /* 입력란 위로 올라오도록 */
+            transition: background-color 0.2s;
+            border-radius: 0;
+        }
+        .search-toggle-btn:hover {
+            background-color: #e8e8e8;
+        }
+        .search-toggle-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* 검색 입력란 (기본 상태: 접혀 있음, 너비 0) */
+        .search-input-wrapper {
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            /* 핵심: 너비를 0에서 시작하여 트랜지션으로 펼침 */
+            width: 0;
+            opacity: 0;
+            transition: width 0.25s cubic-bezier(0.2, 0, 0.38, 0.9),
+                        opacity 0.25s cubic-bezier(0.2, 0, 0.38, 0.9);
+            background-color: #f4f4f4;
+            border-bottom: 2px solid transparent;
+            height: 40px;
+            box-sizing: border-box;
+        }
+
+        .search-input-wrapper input {
+            width: 100%;
+            height: 100%;
+            padding: 0 32px 0 10px; /* 오른쪽 여백은 X 닫기 버튼 자리 */
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            color: #161616;
+            outline: none;
+        }
+        .search-input-wrapper input::placeholder {
+            color: #a8a8a8;
+        }
+
+        /* X 닫기 버튼 (검색창 안 오른쪽, 입력 시 표시) */
+        .search-close-btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            display: none; /* 기본 숨김 */
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            fill: #161616;
+            z-index: 3;
+        }
+        .search-close-btn:hover {
+            background-color: #e8e8e8;
+        }
+        .search-close-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+
+        /* ============================================
+           확장된 상태 (expanded)
+           ============================================ */
+        .expandable-search.expanded .search-input-wrapper {
+            width: 288px;        /* Carbon Search 기본 너비 */
+            opacity: 1;
+            border-bottom-color: #161616;
+        }
+
+        .expandable-search.expanded .search-close-btn {
+            display: flex; /* 닫기 버튼 표시 */
+        }
+
+        /* 포커스 상태에서 하단 보더를 파란색으로 강조 */
+        .expandable-search.expanded .search-input-wrapper:focus-within {
+            border-bottom-color: #0f62fe;
+        }
+
+        /* ============================================
+           마우스 오버(Hover) 시 자동 확장
+           ============================================ */
+        .expandable-search:hover .search-input-wrapper {
+            width: 288px;
+            opacity: 1;
+            border-bottom-color: #161616;
+        }
+
+        .expandable-search:hover .search-close-btn {
+            display: flex;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h2>Carbon Design - Expandable Search (HTML/CSS 버전)</h2>
+    <p style="color: #525252; margin-bottom: 40px;">
+        돋보기 아이콘을 클릭하면 검색 입력란이 부드럽게 확장됩니다.<br>
+        X 버튼을 누르거나 외부를 클릭하면 다시 접힙니다.
+    </p>
+
+    <div class="expandable-search" id="expandableSearch">
+        <!-- 1. 돋보기 아이콘 버튼 (Toggle) -->
+        <button class="search-toggle-btn" id="searchToggleBtn" type="button" aria-label="검색 열기">
+            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 14.3L10.7 10c1.9-2.3 1.6-5.8-.7-7.7S4.2.7 2.3 3 .7 8.8 3 10.7c2 1.7 5 1.7 7 0l4.3 4.3.7-.7zM2 6.5C2 4 4 2 6.5 2S11 4 11 6.5 9 11 6.5 11 2 9 2 6.5z"></path>
+            </svg>
+        </button>
+
+        <!-- 2. 검색 입력란 (접혀 있다가 펼쳐지는 영역) -->
+        <div class="search-input-wrapper">
+            <input type="text" id="searchInput" placeholder="Search...">
+        </div>
+
+        <!-- 3. X 닫기 버튼 -->
+        <button class="search-close-btn" id="searchCloseBtn" type="button" aria-label="검색 닫기">
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 9.4L22.6 8 16 14.6 9.4 8 8 9.4l6.6 6.6L8 22.6 9.4 24l6.6-6.6 6.6 6.6 1.4-1.4-6.6-6.6L24 9.4z"></path>
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        const container = document.getElementById('expandableSearch');
+        const closeBtn  = document.getElementById('searchCloseBtn');
+        const searchInput = document.getElementById('searchInput');
+
+        // 마우스가 올라오면 자동으로 input에 포커스
+        container.addEventListener('mouseenter', () => {
+            setTimeout(() => searchInput.focus(), 260);
+        });
+
+        // X 닫기 버튼 클릭 → 입력값 초기화
+        closeBtn.addEventListener('click', () => {
+            searchInput.value = '';
+        });
+    </script>
+
+</body>
+</html>

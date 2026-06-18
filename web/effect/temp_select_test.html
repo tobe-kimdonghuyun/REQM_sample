@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Tag Arrow Rotation Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 50px;
+        }
+
+        /* 셀렉트 박스를 감싸는 래퍼 */
+        .select-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 200px;
+        }
+
+        /* 기본 셀렉트 스타일 리셋 */
+        select {
+            width: 100%;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            /* 기본 화살표 숨김 */
+            appearance: none; 
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: transparent;
+            cursor: pointer;
+            outline: none;
+        }
+
+        /* 커스텀 화살표 아이콘 (SVG 배경 이미지 사용) */
+        .select-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            width: 16px;
+            height: 16px;
+            margin-top: -8px; 
+            /* 아래쪽 화살표 SVG (Data URI) */
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z" fill="%23161616"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            pointer-events: none; /* 클릭 이벤트가 select 마우스 클릭을 막지 않도록 함 */
+            
+            /* 부드러운 회전을 위한 애니메이션 속성 */
+            transition: transform 0.2s ease-in-out;
+        }
+
+        /* 
+           [순수 CSS 애니메이션의 한계]
+           select가 활성화(포커스)되었을 때 화살표를 회전시킬 수는 있지만,
+           실제로 옵션 리스트가 펼쳐졌는지(Opened), 닫혔는지(Closed)를 
+           CSS만으로는 정확히 감지할 수 없습니다. 
+           포커스가 풀릴 때(Blur)에만 원래대로 돌아옵니다.
+        */
+        select:focus + .select-wrapper::after,
+        .select-wrapper:focus-within::after {
+            /* 포커스 상태에서 위로 180도 회전 */
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+
+    <h3>Select Tag 화살표 회전 한계 테스트</h3>
+    <p>
+        <code>&lt;select&gt;</code> 태그에 대한 순수 CSS 화살표 회전입니다.<br>
+        클릭하여 포커스를 받으면 위로 회전하지만, 옵션을 선택하고 창이 닫혀도 <b>포커스를 잃기 전까지는 계속 위를 향하는 한계</b>가 있습니다.
+    </p>
+    
+    <div class="select-wrapper">
+        <select>
+            <option value="1">옵션 1</option>
+            <option value="2">옵션 2</option>
+            <option value="3">옵션 3</option>
+        </select>
+    </div>
+
+</body>
+</html>

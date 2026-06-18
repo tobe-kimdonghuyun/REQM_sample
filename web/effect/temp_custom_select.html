@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Select Arrow Rotation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 50px;
+        }
+
+        /* 커스텀 셀렉트 컨테이너 */
+        .custom-select {
+            position: relative;
+            width: 200px;
+            user-select: none;
+        }
+
+        /* 선택된 값을 보여주는 영역 (버튼 역할) */
+        .select-trigger {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* 화살표 아이콘 */
+        .arrow-icon {
+            width: 16px;
+            height: 16px;
+            fill: #161616;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        /* 드롭다운 옵션 리스트 */
+        .options-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 10;
+            
+            /* 기본적으로 숨김, 투명도를 이용해 부드럽게 나타나게 할 수도 있음 */
+            display: none; 
+        }
+
+        /* 옵션 항목 */
+        .option-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.1s;
+        }
+
+        .option-item:hover {
+            background-color: #f4f4f4;
+        }
+
+        /* === 열림(Open) 상태일 때의 스타일 === */
+        
+        /* 컨테이너에 open 클래스가 추가되면 옵션 리스트 보이기 */
+        .custom-select.open .options-list {
+            display: block;
+        }
+
+        /* 컨테이너에 open 클래스가 추가되면 화살표를 180도 회전하여 위를 향하게 함 */
+        .custom-select.open .arrow-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+
+    <h3>Custom Select (Div + Javascript) Arrow Rotation Demo</h3>
+    <p>
+        순수 <code>&lt;select&gt;</code> 태그로는 리스트가 다시 접힐 때를 CSS만으로 정확히 감지하기 어렵습니다.<br>
+        실제 Carbon Design System과 같은 UI 라이브러리들은 `div`와 자바스크립트를 이용해 커스텀 드롭다운을 만들어서 완벽한 제어를 합니다.
+    </p>
+    
+    <div class="custom-select" id="myCustomSelect">
+        <div class="select-trigger">
+            <span class="selected-text">옵션을 선택하세요</span>
+            <!-- SVG 화살표 (아래 방향) -->
+            <svg class="arrow-icon" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"></path>
+            </svg>
+        </div>
+        <div class="options-list">
+            <div class="option-item" data-value="1">옵션 1</div>
+            <div class="option-item" data-value="2">옵션 2</div>
+            <div class="option-item" data-value="3">옵션 3</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const customSelect = document.getElementById('myCustomSelect');
+            const trigger = customSelect.querySelector('.select-trigger');
+            const selectedText = customSelect.querySelector('.selected-text');
+            const options = customSelect.querySelectorAll('.option-item');
+
+            // 1. 트리거(버튼 영역) 클릭 시 열림/닫힘 토글
+            trigger.addEventListener('click', function(e) {
+                // open 클래스를 토글 (CSS에서 화살표 회전과 리스트 노출 제어)
+                customSelect.classList.toggle('open');
+                e.stopPropagation(); // 바깥 영역 클릭 이벤트 방지
+            });
+
+            // 2. 옵션 클릭 시 값 변경 및 리스트 닫기 (이 때 화살표도 원래대로 돌아감)
+            options.forEach(function(option) {
+                option.addEventListener('click', function() {
+                    selectedText.textContent = this.textContent;
+                    customSelect.classList.remove('open'); // 창 닫기
+                });
+            });
+
+            // 3. 셀렉트 박스 외부를 클릭했을 때 리스트 닫기 (화살표 원상복구)
+            document.addEventListener('click', function(e) {
+                if (!customSelect.contains(e.target)) {
+                    customSelect.classList.remove('open');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

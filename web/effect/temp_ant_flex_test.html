@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ant Design Flex Clone</title>
+    <style>
+        /* 기본 리셋 및 전역 설정 */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+            'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+            'Noto Color Emoji';
+            padding: 50px;
+            background-color: #f5f5f5;
+        }
+
+        /* 
+           Ant Design Flex 컴포넌트 CSS 분석 및 모방 (css-var- 태그 및 hash 클래스들은 CSS-in-JS 자동 생성) 
+           
+           - ant-flex: display를 flex로 설정
+           - ant-flex-align-center: align-items를 center로 설정 (수직 중앙 정렬)
+           - ant-flex-gap-middle: flex 항목 사이의 간격(gap)을 16px로 설정 (Ant Design 기본 middle 갭)
+        */
+
+        .ant-flex {
+            display: flex;
+        }
+
+        .ant-flex-align-center {
+            align-items: center;
+        }
+
+        .ant-flex-gap-middle {
+            gap: 16px; /* Ant Design의 size="middle"은 기본적으로 16px 입니다. */
+        }
+
+        /* 데모를 위해 추가한 꾸밈용 CSS */
+        .demo-box {
+            width: 100px;
+            height: 100px;
+            background-color: #1677ff; /* Ant Design 기본 파란색 (Blue 6) */
+            border-radius: 6px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
+            transition: all 0.2s;
+        }
+
+        .demo-box:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .demo-text {
+            font-size: 16px;
+            color: #333;
+            background-color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: 1px solid #d9d9d9;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Ant Design Flex 레이아웃 분석 및 구현</h2>
+    <p>
+        Ant Design 사이트에서 사용되는 <strong>ant-flex css-1daqxe2 css-var-_r_5t_ ant-flex-align-center ant-flex-gap-middle</strong> 클래스들의 역할을 순수 CSS로 재현한 샘플입니다.
+    </p>
+    <ul>
+        <li><code>css-1daqxe2</code>, <code>css-var-_r_5t_</code>: CSS-in-JS 스타일링 도구가 자동 생성하는 해시 클래스/변수명으로 기능적으로는 무시해도 됩니다.</li>
+        <li><code>ant-flex</code>: <b>display: flex;</b> 선언</li>
+        <li><code>ant-flex-align-center</code>: <b>align-items: center;</b> 요소들을 수직 중앙 정렬</li>
+        <li><code>ant-flex-gap-middle</code>: <b>gap: 16px;</b> 요소들 사이의 간격</li>
+    </ul>
+
+    <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
+
+    <h3>구현 결과</h3>
+    <!-- Ant design과 동일한 클래스명 적용 -->
+    <div class="ant-flex ant-flex-align-center ant-flex-gap-middle" style="background: white; padding: 24px; border-radius: 8px; border: 1px solid #e8e8e8;">
+        
+        <div class="demo-box">Box 1</div>
+        <div class="demo-box" style="height: 60px; background-color: #52c41a;">Box 2</div>
+        <div class="demo-box" style="height: 120px; background-color: #faad14;">Box 3</div>
+        <div class="demo-text">
+            옆의 상자들과 높이가 달라도 <code>align-items: center</code> 덕분에 수직으로 중앙 정렬됩니다.<br>
+            또한 서로 간에는 <code>gap: 16px</code> 간격이 정확히 유지됩니다.
+        </div>
+        
+    </div>
+
+</body>
+</html>
