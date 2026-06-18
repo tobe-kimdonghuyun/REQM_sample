@@ -21,17 +21,7 @@
 ## 프로젝트 주요 디렉토리
 
 ```
-tools/           — 배포 BAT 스크립트 및 Tomcat 제어 스크립트
-scripts/         — PowerShell 유틸리티 (Jakarta 변환, JAR 다운로드)
-nexacroK/        — nexacroK UI화면 프로젝트 소스
-NTemplate/       — nexacroN 프로젝트 템플릿
-SKILLS/          — Claude Code 커스텀 스킬 정의
-deploy/          — 배포 설정
-DOCS/            — 개발 및 운영 문서, nexacroN, nexacorK 설계문서가 있음 
-nexacroK_UI/     — nexacroK UI화면 프로젝트 소스
-nexacroN/nexacroN_UI/ — nexacroN UI화면 프로젝트 소스
-nexacroN/output/     — nexacroN UI화면 프로젝트 소스를 generate하여 나온 결과물 폴더
-nexacroN/deploy/     — nexacroN UI화면 프로젝트 소스를 generate하여 나온 결과물을 deploy한 결과물 폴던
+\\
 ```
 
 ---
